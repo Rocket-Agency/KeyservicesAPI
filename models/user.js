@@ -128,6 +128,7 @@ module.exports = sequelize => {
   };
   const options = {
     tableName: "user",
+    timestamps: false,
     comment: "",
     indexes: [{
       name: "group",

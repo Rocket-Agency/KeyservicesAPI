@@ -19,7 +19,7 @@ module.exports = (app) => {
 
     // app.put('/api/:postId',postController.update);
 
-    app.get('/users', userController.generateUsers);
-    // app.get('/users', userController.getAllUser);
+    app.get('/users/generate', userController.generateUsers);
+    app.get('/users', userController.getAllUsers);
 
 }
