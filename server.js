@@ -33,7 +33,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 //     console.log("Drop and re-sync db.");
 // });
 
-require('./routes/routes')(app);
+require('./routes/user')(app);
 
 app.listen(PORT,() => {
     console.log(`Server is listening to port ${PORT}`)

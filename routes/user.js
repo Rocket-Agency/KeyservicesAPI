@@ -44,10 +44,6 @@ module.exports = (app) => {
         res.status(200).send("Welcome KeyServices API v1")
     })
 
-    // app.get('/api/users',userController.getAllUsers);
-
-    // app.post('/api/user/create',userController.create);
-
     // app.put('/api/user/:userId',userController.update);
 
     // app.get('/api/:userId/posts',postController.getAllPostsOfUser);
