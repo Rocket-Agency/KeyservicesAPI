@@ -1,7 +1,7 @@
-<h1 align="center">Welcome to Rocket-Agency-Api 👋</h1>
+<h1 align="center">Welcome to Keyservies-Api 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
-  <a href="localalhost:3030/api/docs/  " target="_blank">
+  <a href="http://localhost:3030/api-docs  " target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
   <a href="#" target="_blank">
@@ -9,7 +9,7 @@
   </a>
 </p>
 
-> Api Keyservices  
+> Project of students Api Keyservices  
 
 ### ✨ [Demo](localhost:3030)
 
@@ -22,20 +22,14 @@ npm install
 ## Usage
 
 ```sh
-npm run start
-```
-
-## Run tests
-
-```sh
-npm run test
+npm start
 ```
 
 ## Author
 
-👤 **Djamel**
+👤👤👤👤 **Rocket-Agency**
 
-* Github: [@Strawbang ](https://github.com/Strawbang )
+* Github: [@Rocket-Agency](https://github.com/Rocket-Agency )
 
 ## Show your support
 
