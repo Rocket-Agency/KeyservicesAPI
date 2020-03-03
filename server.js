@@ -35,6 +35,6 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 require('./routes/user')(app);
 
-app.listen(PORT,"51.158.67.56",() => {
+app.listen(PORT,"0.0.0.0",() => {
     console.log(`Server is listening to port ${PORT}`)
 })
