@@ -4,7 +4,7 @@ const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 // const YAML = require('yamljs');
 // const swaggerDocument = YAML.load('./swagger.yaml');
-const PORT = 3030;
+const PORT = 3000;
 const app = express();
 
 // https://swagger.io/specification/#infoObject
@@ -17,7 +17,7 @@ const swaggerOptions = {
               name: "Rocket-Agency"
           },
           version: "1.0.0",
-          servers:["http://localhost:3030"]
+          servers:["http://localhost:3000"]
       },
     },
     apis: ["./routes/*.js"]
