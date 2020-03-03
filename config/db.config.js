@@ -3,7 +3,7 @@ module.exports = {
     USER: "root",
     PASSWORD: "rootroot",
     DB: "keyservices",
-    dialect: "mysql",
+    dialect: "mariadb",
     pool: {
       max: 5,
       min: 0,
