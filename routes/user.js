@@ -61,8 +61,12 @@ module.exports = (app) => {
      *    tags: 
      *      - User
      *    description: Use to request all users
+     *    consumes:
+     *      - application/json
+     *    produces:
+     *      - application/json
      *    responses:
-     *      '201':
+     *      '200':
      *        description: A successful response
      */
     app.get('/api/users', userController.getAllUsers);
@@ -83,9 +87,11 @@ module.exports = (app) => {
      *          type : string
      *          format : string
      *  responses:
-     *      '201':
+     *      '200':
      *        description: A successful response
      */
     app.post('/api/user/create',userController.create);
+
+    app.post('/api/user/login', userController.login);
 
 }

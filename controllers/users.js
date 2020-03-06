@@ -1,6 +1,9 @@
 const db = require('../models');
 const User = db['user'];
 const faker = require('faker');
+const jwt = require('jsonwebtoken');
+const bcrypt = require ('bcryptjs');
+require('dotenv').config();
 
 module.exports = {
 
@@ -33,16 +36,39 @@ module.exports = {
         try {
 
             const userCollection = await User.findAll({});
-
-            res.status(201).send(userCollection);
-
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).send(userCollection);
         }
         catch(e){
             console.log(e);
 
-            res.status(500).send(e);
+            res.status(400).send(e);
         }
 
+    },
+
+    async login(req,res, next){
+        try {
+            const jwtsecretkey = process.env.SECRET_KEY;
+            const expiresIn = process.env.EXPIRES_IN;
+            const userCollection = await User.findOne({
+                where: {
+                    user_email: req.body.email,
+                },
+            });
+            const token = jwt.sign({user_first_name: req.body.email}, jwtsecretkey);
+            res.status(200).send({
+                auth: true,
+                user: userCollection,
+                token: token,
+                message: 'user found'
+            })
+        }
+        catch (e){
+            console.log(e);
+
+            res.status(400).send(e);
+        }
     },
 
     async create(req,res) {
@@ -50,6 +76,7 @@ module.exports = {
             const userCollection = await User
             .create({
                 email : req.body.email,
+                password : bcrypt.hashSync(req.body.password, 8)
             });
 
             res.status(201).send(userCollection);
