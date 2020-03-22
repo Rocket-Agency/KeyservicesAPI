@@ -1,6 +1,6 @@
 const db = require("../models");
-const User = db['user'];
-const Groups = db['group'];
+const User = db.user;
+const Groups = db.group;
 
 const Op = db.Sequelize.Op;
 
@@ -13,8 +13,8 @@ const secret = process.env.SECRET_KEY;
 exports.signup = (req, res) => {
   // Save User to Database
   User.create({
-    email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 8)
+    user_email: req.body.email,
+    user_password: bcrypt.hashSync(req.body.password, 8)
   })
     .then(user => {
       if (req.body.groups) {
@@ -54,7 +54,7 @@ exports.signin = (req, res) => {
 
       var passwordIsValid = bcrypt.compareSync(
         req.body.password,
-        user.password
+        user.user_password
       );
 
       if (!passwordIsValid) {

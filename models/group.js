@@ -7,7 +7,6 @@ module.exports = sequelize => {
     group_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      defaultValue: null,
       primaryKey: true,
       autoIncrement: true,
       comment: null,
@@ -16,7 +15,6 @@ module.exports = sequelize => {
     group_name: {
       type: DataTypes.STRING(45),
       allowNull: false,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,

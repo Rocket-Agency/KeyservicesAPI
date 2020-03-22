@@ -7,7 +7,6 @@ module.exports = sequelize => {
     user_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      defaultValue: null,
       primaryKey: true,
       autoIncrement: true,
       comment: null,
@@ -16,7 +15,6 @@ module.exports = sequelize => {
     user_last_name: {
       type: DataTypes.STRING(45),
       allowNull: false,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
@@ -25,7 +23,6 @@ module.exports = sequelize => {
     user_first_name: {
       type: DataTypes.STRING(45),
       allowNull: false,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
@@ -34,7 +31,6 @@ module.exports = sequelize => {
     user_date_of_birth: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
@@ -43,7 +39,6 @@ module.exports = sequelize => {
     user_sexe: {
       type: DataTypes.STRING(45),
       allowNull: false,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
@@ -61,7 +56,6 @@ module.exports = sequelize => {
     user_email: {
       type: DataTypes.STRING(45),
       allowNull: false,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
@@ -70,7 +64,6 @@ module.exports = sequelize => {
     user_password: {
       type: DataTypes.STRING(45),
       allowNull: false,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
@@ -79,7 +72,6 @@ module.exports = sequelize => {
     user_adresse_txt: {
       type: DataTypes.STRING(45),
       allowNull: false,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
@@ -88,7 +80,6 @@ module.exports = sequelize => {
     created: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
@@ -115,7 +106,6 @@ module.exports = sequelize => {
     user_group_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
@@ -126,17 +116,17 @@ module.exports = sequelize => {
       }
     }
   };
-  const options = {
-    tableName: "user",
-    timestamps: false,
-    comment: "",
-    indexes: [{
-      name: "group",
-      unique: false,
-      type: "BTREE",
-      fields: ["user_group_id"]
-    }]
-  };
-  const UserModel = sequelize.define("user_model", attributes, options);
+  // const options = {
+  //   tableName: "user",
+  //   timestamps: false,
+  //   comment: "",
+  //   indexes: [{
+  //     name: "group",
+  //     unique: false,
+  //     type: "BTREE",
+  //     fields: ["user_group_id"]
+  //   }]
+  // };
+  const UserModel = sequelize.define("user_model", attributes);
   return UserModel;
 };

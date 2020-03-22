@@ -25,23 +25,18 @@ User.findOne(
 });
 };
 
-checkGroupsExisted = (req, res, next) =>
-{
-    if (req.body.group)
-    {
-      for (let i = 0; i < req.body.groups.length; i++)
-      {
-        if (!Group.includes(req.body.groups[i]))
-        {
-          res.status(400).send(
-            {
-                message: "Failed! Role does not exist = " + req.body.groups[i]
-            });
-          return;
-        }
+checkGroupsExisted = (req, res, next) => {
+  if (req.body.groups) {
+    for (let i = 0; i < req.body.groups.length; i++) {
+      if (!GROUPS.includes(req.body.groups[i])) {
+        res.status(400).send({
+          message: "Failed! Role does not exist = " + req.body.groups[i]
+        });
+        return;
       }
     }
-    next();
+  }
+  next();
 };
 
 const verifySignUp = {

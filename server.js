@@ -3,8 +3,6 @@ const bodyParser = require('body-parser');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const cors = require('cors');
-// const YAML = require('yamljs');
-// const swaggerDocument = YAML.load('./swagger.yaml');
 const app = express();
 require('dotenv').config();
 
@@ -37,12 +35,35 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(cors(corsOptions));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-// const db = require("./models");
-// db.sequelize.sync({ force: true }).then(() => {
-//     console.log("Drop and re-sync db.");
-// });
+
+const db = require("./models");
+db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0', { raw: true }).then ( function () {
+    db.sequelize.sync ({ force: true }).then ( function () {
+        console.log("Drop and re-sync db.");
+        initial();
+    });
+});
+const Group = db.group;
+function initial() {
+    Group.create({
+      group_id: 1,
+      group_name: "user"
+    });
+   
+    Group.create({
+      group_id: 2,
+      group_name: "moderator"
+    });
+   
+    Group.create({
+      group_id: 3,
+      group_name: "admin"
+    });
+}
 
 require('./routes/user')(app);
+require('./routes/auth.routes')(app);
+require('./routes/user.routes')(app);
 
 app.listen(PORT,() => {
     console.log(`Server is listening to port ${PORT}`)
