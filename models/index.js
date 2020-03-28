@@ -35,12 +35,12 @@ db.user = require("./user")(sequelize, Sequelize);
 db.group = require("./group")(sequelize, Sequelize);
 
 db.group.belongsToMany(db.user, {
-  through: "user_groups",
+  through: "user_group_id", // user_groups
   foreignKey: "group_id",
   otherKey: "user_id"
 });
 db.user.belongsToMany(db.group, {
-  through: "user_groups",
+  through: "user_group_id",
   foreignKey: "user_id",
   otherKey: "group_id"
 });

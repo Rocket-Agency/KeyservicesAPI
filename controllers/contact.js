@@ -47,8 +47,11 @@ module.exports = {
         try {
             const contactCollection = await Contact
             .create({
-                email : req.body.email,
-                password : bcrypt.hashSync(req.body.password, 8)
+                contact_first_name : req.body.first_name,
+                contact_last_name : req.body.last_name,
+                contact_email : req.body.email,
+                contact_object : req.body.object,
+                contact_message : req.body.message,
             });
 
             res.status(201).send(contactCollection);

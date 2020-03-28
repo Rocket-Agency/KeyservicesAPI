@@ -75,8 +75,8 @@ module.exports = {
         try {
             const userCollection = await User
             .create({
-                email : req.body.email,
-                password : bcrypt.hashSync(req.body.password, 8)
+                user_email : req.body.email,
+                user_password : bcrypt.hashSync(req.body.password, 8)
             });
 
             res.status(201).send(userCollection);
