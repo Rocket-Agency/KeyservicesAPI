@@ -77,23 +77,6 @@ module.exports = sequelize => {
       comment: null,
       field: "user_adresse_txt"
     },
-    created: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      primaryKey: false,
-      autoIncrement: false,
-      comment: null,
-      field: "created"
-    },
-    updated: {
-      type: DataTypes.DATE,
-      allowNull: true,
-      defaultValue: null,
-      primaryKey: false,
-      autoIncrement: false,
-      comment: null,
-      field: "updated"
-    },
     deleted: {
       type: DataTypes.INTEGER(11),
       allowNull: true,
@@ -102,18 +85,6 @@ module.exports = sequelize => {
       autoIncrement: false,
       comment: null,
       field: "deleted"
-    },
-    user_group_id: {
-      type: DataTypes.INTEGER(11),
-      allowNull: false,
-      primaryKey: false,
-      autoIncrement: false,
-      comment: null,
-      field: "user_group_id",
-      references: {
-        key: "group_id",
-        model: "group_model"
-      }
     }
   };
   // const options = {
@@ -127,6 +98,6 @@ module.exports = sequelize => {
   //     fields: ["user_group_id"]
   //   }]
   // };
-  const UserModel = sequelize.define("user_model", attributes);
+  const UserModel = sequelize.define("users", attributes);
   return UserModel;
 };
