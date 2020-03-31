@@ -44,7 +44,7 @@ exports.signup = (req, res) => {
 exports.signin = (req, res) => {
   User.findOne({
     where: {
-      email: req.body.email
+      user_email: req.body.email
     }
   })
     .then(user => {
@@ -69,7 +69,7 @@ exports.signin = (req, res) => {
       });
 
       var authorities = [];
-      user.getRoles().then(groups => {
+      user.getGroups().then(groups => {
         for (let i = 0; i < groups.length; i++) {
           authorities.push("GROUPS_" + groups[i].name.toUpperCase());
         }

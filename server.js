@@ -37,7 +37,7 @@ app.use(cors(corsOptions));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 const db = require("./models");
-db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0', { raw: true }).then ( function () {
+/*db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0', { raw: true }).then ( function () {
     db.sequelize.sync ({ force: true }).then ( function () {
         console.log("Drop and re-sync db.");
         initial();
@@ -60,6 +60,7 @@ function initial() {
       group_name: "admin"
     });
 }
+*/
 
 require('./routes/user')(app);
 require('./routes/auth.routes')(app);
