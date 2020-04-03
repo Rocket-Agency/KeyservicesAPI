@@ -35,7 +35,7 @@ git add .
 git commit -m 'message a marqué'
 git checkout master
 git merge 'nom de la branche'
-git pull
+git push
 ```
 
 ## Author
