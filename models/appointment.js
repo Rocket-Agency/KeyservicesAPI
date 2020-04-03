@@ -1,7 +1,7 @@
 const {
   DataTypes
 } = require('sequelize');
-//testssssssssss
+
 module.exports = sequelize => {
   const attributes = {
     appointment_id: {
