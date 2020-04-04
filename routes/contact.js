@@ -1,4 +1,4 @@
-userController = require('../controllers/contacts');
+contactController = require('../controllers/contacts');
 module.exports = (app) => {
 
     /**
@@ -13,26 +13,15 @@ module.exports = (app) => {
      *                  type: "string"
      *              contact_first_name:
      *                  type: "string"
-     *              contact_sexe:
-     *                  type: "string"
      *              contact_email:
      *                  type: "string"
-     *              contact_subject:
+     *              contact_object:
      *                  type: "string"
      *              contact_message:
      *                  type: "text"
-     *              created:
-     *                  type: "string"
-     *                  format: "date"
      */
 
-
-    app.get('/',(req,res) => {
-        res.status(200).send("Welcome KeyServices API v1")
-    })
-
-
-    app.get('/contacts/generate', contactController.generateContacts);
+    app.get('/contacts/generate', contactController.generateContact);
 
     /**
      * @swagger
@@ -70,6 +59,6 @@ module.exports = (app) => {
      *      '200':
      *        description: A successful response
      */
-    app.post('/api/contact/create',contactController.create);
+    app.post('/api/contact/create', contactController.create);
 
 }

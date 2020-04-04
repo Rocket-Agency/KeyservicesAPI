@@ -7,7 +7,6 @@ const {
       contact_id: {
         type: DataTypes.INTEGER(11),
         allowNull: false,
-        defaultValue: null,
         primaryKey: true,
         autoIncrement: true,
         comment: null,
@@ -16,7 +15,6 @@ const {
       contact_last_name: {
         type: DataTypes.STRING(45),
         allowNull: false,
-        defaultValue: null,
         primaryKey: false,
         autoIncrement: false,
         comment: null,
@@ -25,25 +23,14 @@ const {
       contact_first_name: {
         type: DataTypes.STRING(45),
         allowNull: false,
-        defaultValue: null,
         primaryKey: false,
         autoIncrement: false,
         comment: null,
         field: "contact_first_name"
       },
-      contact_sexe: {
-        type: DataTypes.STRING(45),
-        allowNull: false,
-        defaultValue: null,
-        primaryKey: false,
-        autoIncrement: false,
-        comment: null,
-        field: "contact_sexe"
-      },
       contact_email: {
         type: DataTypes.STRING(45),
         allowNull: false,
-        defaultValue: null,
         primaryKey: false,
         autoIncrement: false,
         comment: null,
@@ -52,7 +39,6 @@ const {
       contact_object: {
         type: DataTypes.STRING(45),
         allowNull: false,
-        defaultValue: null,
         primaryKey: false,
         autoIncrement: false,
         comment: null,
@@ -61,20 +47,10 @@ const {
       contact_message: {
         type: DataTypes.TEXT,
         allowNull: false,
-        defaultValue: null,
         primaryKey: false,
         autoIncrement: false,
         comment: null,
         field: "contact_message"
-      },
-      created: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: null,
-        primaryKey: false,
-        autoIncrement: false,
-        comment: null,
-        field: "created"
       }
     };
     const options = {
@@ -83,6 +59,6 @@ const {
       comment: "",
       indexes: []
     };
-    const ContactModel = sequelize.define("contact_model", attributes, options);
+    const ContactModel = sequelize.define("contact", attributes, options);
     return ContactModel;
   };

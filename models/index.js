@@ -33,6 +33,7 @@ db.sequelize = sequelize;
 
 db.user = require("./user")(sequelize, Sequelize);
 db.group = require("./group")(sequelize, Sequelize);
+db.contact = require("./contact")(sequelize, Sequelize);
 
 db.group.belongsToMany(db.user, {
   through: "user_group_id", // user_groups

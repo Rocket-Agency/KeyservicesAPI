@@ -1,23 +1,20 @@
 const db = require('../models');
 const Contact = db['contact'];
 const faker = require('faker');
-const jwt = require('jsonwebtoken');
-const bcrypt = require ('bcryptjs');
 require('dotenv').config();
 
 module.exports = {
+    
     async generateContact(req, res) {
         try {
             for (let id = 1; id <= 10; id++) {
                 const contactCollection = await Contact.create({
                     contact_id : id,
-                    contact_sexe : 'F',
                     contact_first_name : faker.name.firstName(),
                     contact_last_name : faker.name.lastName(),
                     contact_email : faker.internet.email(),
                     contact_object : faker.lorem.sentence(),
-                    contact_message : faker.lorem.paragraph(),
-                    created : new Date().toISOString().slice(0, 19).replace('T', ' '),
+                    contact_message : faker.lorem.paragraph()
                 })
                 res.status(201).send(contactCollection);
             }
@@ -53,8 +50,7 @@ module.exports = {
                 contact_object : req.body.object,
                 contact_message : req.body.message,
             });
-
-            res.status(201).send(contactCollection);
+            res.status(200).send(contactCollection);
         }
         catch(e){
             console.log(e);

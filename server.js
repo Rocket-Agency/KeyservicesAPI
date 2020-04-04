@@ -9,10 +9,6 @@ require('dotenv').config();
 const HOST = process.env.HOST;
 const PORT = process.env.PORT;
 
-const corsOptions = {
-    origin: "http://localhost:3000"
-};
-
 // https://swagger.io/specification/#infoObject
 const swaggerOptions = {
     swaggerDefinition : {
@@ -33,11 +29,11 @@ const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : false}));
-app.use(cors(corsOptions));
+app.use(cors());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 const db = require("./models");
-/*db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0', { raw: true }).then ( function () {
+db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0', { raw: true }).then ( function () {
     db.sequelize.sync ({ force: true }).then ( function () {
         console.log("Drop and re-sync db.");
         initial();
@@ -60,9 +56,9 @@ function initial() {
       group_name: "admin"
     });
 }
-*/
 
 require('./routes/user')(app);
+require('./routes/contact')(app);
 require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
 
