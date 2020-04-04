@@ -25,6 +25,19 @@ npm install
 npm start
 ```
 
+## Fonctionnement branch git
+
+```sh
+git checkout -b 'nom de la branche'
+//une fois les modifications effectuées, faire une verification avec
+git status
+git add .
+git commit -m 'message a marqué'
+git checkout master
+git merge 'nom de la branche'
+git push
+```
+
 ## Author
 
 👤👤👤👤 **Rocket-Agency**
