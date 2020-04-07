@@ -15,7 +15,7 @@ module.exports = sequelize => {
     },
     equipment_kitchen: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
+      allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
@@ -24,7 +24,7 @@ module.exports = sequelize => {
     },
     equipment_heater: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
+      allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
@@ -33,7 +33,7 @@ module.exports = sequelize => {
     },
     equipment_wifi: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
+      allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
@@ -42,7 +42,7 @@ module.exports = sequelize => {
     },
     equipment_iron: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
+      allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
@@ -51,7 +51,7 @@ module.exports = sequelize => {
     },
     equipment_working_space: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
+      allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
@@ -60,7 +60,7 @@ module.exports = sequelize => {
     },
     equipment_private_bathroom: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
+      allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
@@ -69,7 +69,7 @@ module.exports = sequelize => {
     },
     equipment_shampoo: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
+      allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
@@ -78,7 +78,7 @@ module.exports = sequelize => {
     },
     equipment_air_conditioner: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
+      allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
@@ -87,7 +87,7 @@ module.exports = sequelize => {
     },
     equipment_hangers: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
+      allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
@@ -96,7 +96,7 @@ module.exports = sequelize => {
     },
     equipment_hair_dryer: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
+      allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
@@ -105,30 +105,12 @@ module.exports = sequelize => {
     },
     equipment_television: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
-      defaultValue: null,
-      primaryKey: false,
-      autoIncrement: false,
-      comment: null,
-      field: "equipment_television"
-    },
-    created: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: null,
-      primaryKey: false,
-      autoIncrement: false,
-      comment: null,
-      field: "created"
-    },
-    updated: {
-      type: DataTypes.DATE,
       allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "updated"
+      field: "equipment_television"
     },
     deleted: {
       type: DataTypes.DATE,

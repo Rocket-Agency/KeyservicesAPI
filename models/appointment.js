@@ -9,7 +9,7 @@ module.exports = sequelize => {
       allowNull: false,
       defaultValue: null,
       primaryKey: true,
-      autoIncrement: false,
+      autoIncrement: true,
       comment: null,
       field: "appointment_id"
     },
@@ -77,7 +77,7 @@ module.exports = sequelize => {
       field: "appointment_user_id",
       references: {
         key: "user_id",
-        model: "user_model"
+        model: "users_model"
       }
     }
   };

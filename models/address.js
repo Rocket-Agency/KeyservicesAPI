@@ -104,7 +104,7 @@ module.exports = sequelize => {
       field: "address_user_id",
       references: {
         key: "user_id",
-        model: "user_model"
+        model: "users_model"
       }
     }
   };
