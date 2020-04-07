@@ -9,21 +9,29 @@ module.exports = {
 
     async generateUsers(req, res) {
         try {
-            for (let id = 1; id <= 100; id++) {
+            for (let id = 1; id <= 50; id++) {
+                if(id % 2 ==0){
+                    sexeFM = 'F';
+                }
+                else{
+                    sexeFM = 'M';
+                }
+               
                 const userCollection = await User.create({
-                    user_id : id,
-                    user_first_name : faker.name.firstName(),
-                    user_last_name : faker.name.lastName(),
-                    user_sexe : 'F',
+                    user_id : '',
+                    user_last_name : faker.name.firstName(),
+                    user_first_name : faker.name.lastName(),
+                    user_date_of_birth : new Date().toISOString().slice(0, 19).replace('T', ' '),
+                    user_sexe : sexeFM,
+                    user_photo : 'photo.pnj',
                     user_email : faker.internet.email(),
                     user_password : faker.internet.password(),
                     user_adresse_txt : faker.address.streetAddress(),
-                    user_date_of_birth : new Date().toISOString().slice(0, 19).replace('T', ' '),
-                    created : new Date().toISOString().slice(0, 19).replace('T', ' '),
-                    user_group_id : Math.floor(Math.random() * 2) + 1,
+                    deleted : '',
+                    // user_group_id : Math.floor(Math.random() * 2) + 1,
                 })
-                res.status(201).send(userCollection);
             }
+            res.status(200).send(userCollection);
         }
         catch(e) {
             console.log(e);
