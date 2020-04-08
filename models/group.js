@@ -26,6 +26,6 @@ module.exports = sequelize => {
     comment: "",
     indexes: []
   };
-  const GroupModel = sequelize.define("group_model", attributes, options);
+  const GroupModel = sequelize.define("group", attributes, options);
   return GroupModel;
 };
