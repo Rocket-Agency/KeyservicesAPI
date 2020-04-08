@@ -62,7 +62,7 @@ module.exports = sequelize => {
       field: "user_email"
     },
     user_password: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.STRING(255),
       allowNull: false,
       primaryKey: false,
       autoIncrement: false,

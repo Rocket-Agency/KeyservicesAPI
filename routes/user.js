@@ -90,8 +90,7 @@ module.exports = (app) => {
      *      '200':
      *        description: A successful response
      */
-    app.post('/api/user/create',userController.create);
-
-    app.post('/api/user/login', userController.login);
+    
+    app.get('/api/user/:userId', userController.findUser);
 
 }

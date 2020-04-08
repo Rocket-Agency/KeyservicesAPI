@@ -19,8 +19,6 @@ module.exports = {
                     user_password : faker.internet.password(),
                     user_adresse_txt : faker.address.streetAddress(),
                     user_date_of_birth : new Date().toISOString().slice(0, 19).replace('T', ' '),
-                    created : new Date().toISOString().slice(0, 19).replace('T', ' '),
-                    user_group_id : Math.floor(Math.random() * 2) + 1,
                 })
                 res.status(201).send(userCollection);
             }
@@ -47,54 +45,27 @@ module.exports = {
 
     },
 
-    async login(req,res, next){
+    async findUser(req, res){
         try {
-            const jwtsecretkey = process.env.SECRET_KEY;
-            const expiresIn = process.env.EXPIRES_IN;
+            const userId = req.params.userId;
             const userCollection = await User.findOne({
-                where: {
-                    user_email: req.body.email,
-                },
+              where: { user_id: userId }
             });
-            const token = jwt.sign({user_first_name: req.body.email}, jwtsecretkey);
-            res.status(200).send({
-                auth: true,
-                user: userCollection,
-                token: token,
-                message: 'user found'
-            })
+            res.status(200).send(userCollection);
         }
-        catch (e){
-            console.log(e);
-
-            res.status(400).send(e);
-        }
-    },
-
-    async create(req,res) {
-        try {
-            const userCollection = await User
-            .create({
-                user_email : req.body.email,
-                user_password : bcrypt.hashSync(req.body.password, 8)
-            });
-
-            res.status(201).send(userCollection);
-        }
-        catch(e){
+        catch (e) {
             console.log(e);
             res.status(400).send(e);
         }
-                    
     },
 
     async update(req,res) {
 
         try{
-            const userCollection = await User.find({
-                id : req.params.userId
-            });
-
+            const userId = req.params.userId;
+            const userCollection = await User.findOne({
+                where: { user_id: userId }
+        });
             if(userCollection){
 
                 const updatedUser = await User.update({
