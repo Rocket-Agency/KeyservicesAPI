@@ -18,7 +18,6 @@ const {
         allowNull: true,
         defaultValue: null,
         primaryKey: false,
-        autoIncrement: false,
         comment: null,
         field: "info_infos"
       },
@@ -27,7 +26,6 @@ const {
         allowNull: true,
         defaultValue: null,
         primaryKey: false,
-        autoIncrement: false,
         comment: null,
         field: "info_availability"
       },
@@ -36,7 +34,6 @@ const {
         allowNull: true,
         defaultValue: null,
         primaryKey: false,
-        autoIncrement: false,
         comment: null,
         field: "info_area"
       },
@@ -45,7 +42,6 @@ const {
         allowNull: true,
         defaultValue: null,
         primaryKey: false,
-        autoIncrement: false,
         comment: null,
         field: "info_around"
       },
@@ -54,7 +50,6 @@ const {
         allowNull: true,
         defaultValue: null,
         primaryKey: false,
-        autoIncrement: true,
         comment: null,
         field: "info_stairs"
       },
@@ -63,7 +58,6 @@ const {
         allowNull: true,
         defaultValue: null,
         primaryKey: false,
-        autoIncrement: true,
         comment: null,
         field: "info_noise"
       },
@@ -72,7 +66,6 @@ const {
         allowNull: true,
         defaultValue: null,
         primaryKey: false,
-        autoIncrement: true,
         comment: null,
         field: "info_pets"
       },
@@ -81,7 +74,6 @@ const {
         allowNull: true,
         defaultValue: null,
         primaryKey: false,
-        autoIncrement: true,
         comment: null,
         field: "info_no_parking"
       },
@@ -90,7 +82,6 @@ const {
         allowNull: true,
         defaultValue: null,
         primaryKey: false,
-        autoIncrement: true,
         comment: null,
         field: "info_shared_space"
       },
@@ -99,7 +90,6 @@ const {
         allowNull: true,
         defaultValue: null,
         primaryKey: false,
-        autoIncrement: true,
         comment: null,
         field: "info_equipment_restriction"
       },
@@ -108,7 +98,6 @@ const {
         allowNull: true,
         defaultValue: null,
         primaryKey: false,
-        autoIncrement: true,
         comment: null,
         field: "info_monitoring_device"
       },
@@ -117,7 +106,6 @@ const {
         allowNull: true,
         defaultValue: null,
         primaryKey: false,
-        autoIncrement: true,
         comment: null,
         field: "info_weapons"
       },
@@ -126,7 +114,6 @@ const {
         allowNull: true,
         defaultValue: null,
         primaryKey: false,
-        autoIncrement: true,
         comment: null,
         field: "info_dangerous_animals"
       }

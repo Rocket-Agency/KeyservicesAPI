@@ -7,7 +7,7 @@ module.exports = {
 
     async generateAddress(req, res) {
         try {
-            for (let id = 1; id <= 50; id++) {
+            for (let id = 1; id <= 10; id++) {
                 let road_number = faker.random.number();
                 let road_type = 'rue';
                 let road_name = faker.address.streetName();
@@ -54,7 +54,6 @@ module.exports = {
     },
 
     async getAddressById(req,res) {
-        console.log(req);
         try {
 
             const addressCollection = await Address.findAll({

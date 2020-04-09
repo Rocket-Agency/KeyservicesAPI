@@ -7,7 +7,6 @@ module.exports = sequelize => {
     housing_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      defaultValue: null,
       primaryKey: true,
       autoIncrement: true,
       comment: null,
@@ -16,7 +15,6 @@ module.exports = sequelize => {
     housing_type_property: {
       type: DataTypes.STRING(45),
       allowNull: false,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
@@ -25,7 +23,6 @@ module.exports = sequelize => {
     housing_type: {
       type: DataTypes.STRING(45),
       allowNull: false,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
@@ -34,7 +31,6 @@ module.exports = sequelize => {
     housing_nb_room: {
       type: DataTypes.STRING(45),
       allowNull: false,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
@@ -43,7 +39,6 @@ module.exports = sequelize => {
     housing_nb_bathroom: {
       type: DataTypes.STRING(45),
       allowNull: false,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
@@ -59,7 +54,7 @@ module.exports = sequelize => {
       field: "housing_type"
     },
     deleted: {
-      type: DataTypes.DATE,
+      type:  DataTypes.INTEGER(11),
       allowNull: true,
       defaultValue: null,
       primaryKey: false,
@@ -70,66 +65,61 @@ module.exports = sequelize => {
     housing_adress_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
       field: "housing_adress_id",
       references: {
         key: "address_id",
-        model: "address_model"
+        model: "address"
       }
     },
     housing_equipment_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
       field: "housing_equipment_id",
       references: {
         key: "equipment_id",
-        model: "equipment_model"
+        model: "equipment"
       }
     },
     housing_installation_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
       field: "housing_installation_id",
       references: {
         key: "installation_id",
-        model: "installation_model"
+        model: "installation"
       }
     },
     housing_info_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
       field: "housing_info_id",
       references: {
         key: "info_id",
-        model: "info_model"
+        model: "info"
       }
     },
     housing_rule_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
       field: "housing_rule_id",
       references: {
         key: "rule_id",
-        model: "rule_model"
+        model: "rule"
       }
     }
 
@@ -137,29 +127,29 @@ module.exports = sequelize => {
   const options = {
     tableName: "housing",
     comment: "",
-    indexes: [{
-      name: "housinAaddress",
-      unique: false,
+    index: [{
+      name: "housingAaddress",
+      unique: true,
       type: "BTREE",
       fields: ["housing_adress_id"]
     }, {
       name: "housingEquipment",
-      unique: false,
+      unique: true,
       type: "BTREE",
       fields: ["housing_equipment_id"]
     }, {
       name: "housinInstalation",
-      unique: false,
+      unique: true,
       type: "BTREE",
       fields: ["housing_installation_id"]
     }, {
       name: "housingInfo",
-      unique: false,
+      unique: true,
       type: "BTREE",
       fields: ["housing_info_id"]
     }, {
       name: "housingRule",
-      unique: false,
+      unique: true,
       type: "BTREE",
       fields: ["housing_rule_id"]
     }]

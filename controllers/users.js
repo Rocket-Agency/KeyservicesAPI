@@ -9,7 +9,7 @@ module.exports = {
 
     async generateUsers(req, res) {
         try {
-            for (let id = 1; id <= 50; id++) {
+            for (let id = 1; id <= 10; id++) {
                 if(id % 2 ==0){
                     sexeFM = 'F';
                 }
@@ -31,7 +31,7 @@ module.exports = {
                     // user_group_id : Math.floor(Math.random() * 2) + 1,
                 })
             }
-            res.status(200).send(userCollection);
+            res.status(200).send("Table Users generer");
         }
         catch(e) {
             console.log(e);

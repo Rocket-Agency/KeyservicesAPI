@@ -35,6 +35,14 @@ db.user = require("./user")(sequelize, Sequelize);
 db.group = require("./group")(sequelize, Sequelize);
 db.contact = require("./contact")(sequelize, Sequelize);
 db.address = require("./address")(sequelize, Sequelize);
+db.equipment = require("./equipment")(sequelize, Sequelize);
+db.installation = require("./installation")(sequelize, Sequelize);
+db.info = require("./info")(sequelize, Sequelize);
+db.rule = require("./rule")(sequelize, Sequelize);
+db.housing = require("./housing")(sequelize, Sequelize);
+db.price = require("./price")(sequelize, Sequelize);
+db.ad = require("./ad")(sequelize, Sequelize);
+
 
 
 db.group.belongsToMany(db.user, {

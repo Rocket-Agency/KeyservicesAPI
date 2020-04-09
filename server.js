@@ -62,6 +62,13 @@ require('./routes/contact')(app);
 require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
 require('./routes/address')(app);
+require('./routes/equipment')(app);
+require('./routes/installation')(app);
+require('./routes/info')(app);
+require('./routes/rule')(app);
+require('./routes/housing')(app);
+require('./routes/price')(app);
+require('./routes/ad')(app);
 
 app.listen(PORT,() => {
     console.log(`Server is listening to port ${PORT}`)
