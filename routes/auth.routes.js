@@ -9,7 +9,40 @@ module.exports = function(app) {
     );
     next();
   });
-
+    
+  /**
+     * @swagger
+     * /api/auth/signup:
+     *  post:
+     *    tags:
+     *      - User
+     *    description: Use to register a user
+     *  parameters :
+     *      - first_name : firstname
+     *        in : body
+     *        description : firstname of user
+     *        required : true
+     *        schema :
+     *          type : string
+     *          format : string
+     *      - last_name : lastname
+     *        in : query
+     *        description : lastname of user
+     *        required : true
+     *        schema :
+     *          type : string
+     *          format : string
+     *      - birth : date of dirth
+     *        in : query
+     *        description : date of birth to user
+     *        required : true
+     *        schema :
+     *          type : string
+     *          format : string
+     *  responses:
+     *      '200':
+     *        description: A successful response
+     */
   app.post(
     "/api/auth/signup",
     [
@@ -19,5 +52,30 @@ module.exports = function(app) {
     controller.signup
   );
 
+  /**
+     * @swagger
+     * /api/auth/signin:
+     *  post:
+     *    tags:
+     *      - User
+     *    description: Use to register a user
+     *  parameters:
+     *    - in: body
+     *      name: user
+     *      description: To create a user
+     *      schema:
+     *        type: object
+     *        required:
+     *          - email
+     *          - password
+     *        properties:
+     *          email:
+     *            type: string
+     *          password:
+     *            type: string
+     *  responses:
+     *      '200':
+     *        description: A successful response
+     */
   app.post("/api/auth/signin", controller.signin);
 };

@@ -43,18 +43,29 @@ const Group = db.group;
 function initial() {
     Group.create({
       group_id: 1,
-      group_name: "user"
+      group_name: "admin"
     });
    
     Group.create({
       group_id: 2,
-      group_name: "moderator"
+      group_name: "proprietaire"
     });
-   
+
     Group.create({
       group_id: 3,
-      group_name: "admin"
+      group_name: "locataire"
     });
+
+    Group.create({
+      group_id: 4,
+      group_name: "concierge"
+    });
+
+    Group.create({
+      group_id: 5,
+      group_name: "user"
+    });
+
 }
 
 require('./routes/user')(app);
@@ -62,6 +73,7 @@ require('./routes/contact')(app);
 require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
 require('./routes/address')(app);
+require('./routes/generate')(app);
 
 app.listen(PORT,() => {
     console.log(`Server is listening to port ${PORT}`)

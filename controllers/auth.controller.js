@@ -1,38 +1,44 @@
 const db = require("../models");
 const User = db.user;
-const Groups = db.group;
+const Group = db.group;
 
 const Op = db.Sequelize.Op;
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 require('dotenv').config();
+var toInteger = require('to-integer');
 
 const secret = process.env.SECRET_KEY;
 
 exports.signup = (req, res) => {
   // Save User to Database
   User.create({
+    user_first_name: req.body.first_name,
+    user_last_name: req.body.last_name,
+    user_date_of_birth: req.body.birth,
+    user_sexe: req.body.sexe,
+    user_photo: req.body.photo,
     user_email: req.body.email,
     user_password: bcrypt.hashSync(req.body.password, 8),
-    user_groups: 1
+    user_adresse_txt: req.body.adresse
   })
     .then(user => {
       if (req.body.groups) {
-        Groups.findAll({
+        Group.findAll({
           where: {
             name: {
               [Op.or]: req.body.groups
             }
           }
         }).then(groups => {
-          user.setRoles(groups).then(() => {
+          user.setGroups(groups).then(() => {
             res.send({ message: "User was registered successfully!" });
           });
         });
       } else {
-        // user role = 1
-        user.setRoles([1]).then(() => {
+        // user role = 5
+        user.setGroups([5]).then(() => {
           res.send({ message: "User was registered successfully!" });
         });
       }
@@ -66,18 +72,16 @@ exports.signin = (req, res) => {
       }
 
       var token = jwt.sign({ id: user.user_id }, secret, {
-        expiresIn: 86400 // 24 hours
+        expiresIn: toInteger(process.env.EXPIRES_IN)
       });
 
       var authorities = [];
       user.getGroups().then(groups => {
         for (let i = 0; i < groups.length; i++) {
-          authorities.push("GROUPS_" + groups[i].name.toUpperCase());
+          authorities.push("GROUP_" + groups[i].group_name.toUpperCase());
         }
         res.status(200).send({
           id: user.user_id,
-          first_name: user.user_first_name,
-          last_name: user.user_last_name,
           email: user.user_email,
           groups: authorities,
           accessToken: token

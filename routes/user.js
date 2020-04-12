@@ -90,7 +90,5 @@ module.exports = (app) => {
      *      '200':
      *        description: A successful response
      */
-    
-    app.get('/api/user/:userId', userController.findUser);
 
 }

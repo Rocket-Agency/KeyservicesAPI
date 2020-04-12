@@ -1,6 +1,6 @@
 const db = require("../models");
 const User = db['user'];
-const Groups = db['group'];
+const Group = db.GROUPS;
 
 checkDuplicateUsernameOrEmail = (req, res, next) => {
 // Email
@@ -28,9 +28,9 @@ User.findOne(
 checkGroupsExisted = (req, res, next) => {
   if (req.body.groups) {
     for (let i = 0; i < req.body.groups.length; i++) {
-      if (!GROUPS.includes(req.body.groups[i])) {
+      if (!Group.includes(req.body.groups[i])) {
         res.status(400).send({
-          message: "Failed! Role does not exist = " + req.body.groups[i]
+          message: "Failed! Group does not exist = " + req.body.groups[i] 
         });
         return;
       }
@@ -40,8 +40,8 @@ checkGroupsExisted = (req, res, next) => {
 };
 
 const verifySignUp = {
-checkDuplicateUsernameOrEmail: checkDuplicateUsernameOrEmail,
-checkGroupsExisted: checkGroupsExisted
+  checkDuplicateUsernameOrEmail: checkDuplicateUsernameOrEmail,
+  checkGroupsExisted: checkGroupsExisted
 };
 
 module.exports = verifySignUp;

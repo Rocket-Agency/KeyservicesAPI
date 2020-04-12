@@ -48,6 +48,6 @@ db.user.belongsToMany(db.group, {
   otherKey: "group_id"
 });
 
-db.GROUPS = ["user", "admin", "moderator"];
+db.GROUPS = ["admin", "proprietaire", "locataire", "concierge", "user"];
 
 module.exports = db;
