@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const cors = require('cors');
+var expressWinston = require('express-winston');
+var winston = require('winston'); // for transports.Console
 const app = express();
 require('dotenv').config();
 
@@ -31,6 +33,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(cors());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+// express-winston logger makes sense BEFORE the router
+app.use(expressWinston.logger({
+  transports: [
+    new winston.transports.Console()
+  ],
+  format: winston.format.combine(
+    winston.format.colorize(),
+    winston.format.json()
+  )
+}));
 
 const db = require("./models");
 db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0', { raw: true }).then ( function () {
@@ -74,6 +87,17 @@ require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
 require('./routes/address')(app);
 require('./routes/generate')(app);
+
+// express-winston errorLogger makes sense AFTER the router.
+app.use(expressWinston.errorLogger({
+  transports: [
+    new winston.transports.Console()
+  ],
+  format: winston.format.combine(
+    winston.format.colorize(),
+    winston.format.json()
+  )
+}));
 
 app.listen(PORT,() => {
     console.log(`Server is listening to port ${PORT}`)

@@ -14,16 +14,26 @@ module.exports = function(app) {
   app.get("/api/test/all", controller.allAccess);
 
   app.get(
-    "/api/test/user",
+    '/api/user/:userId',
     [authJwt.verifyToken],
-    controller.userBoard
+    userController.findUser
   );
 
   app.get(
-    '/api/user/:userId',
-    [authJwt.verifyToken],
-    userController.findUser);
-
+    "/api/users",
+    [authJwt.verifyToken, authJwt.isAdmin],
+    userController.getAllUsers
+  );
+  app.put(
+    "/api/user/update/:userId",
+    [authJwt.verifyToken, authJwt.isAdmin],
+    userController.update
+  );
+  app.delete(
+    "/api/user/delete/:userId",
+    [authJwt.verifyToken, authJwt.isAdmin],
+    userController.delete
+  );
   /*app.get(
     "/api/test/mod",
     [authJwt.verifyToken, authJwt.isModerator],

@@ -27,7 +27,7 @@ exports.signup = (req, res) => {
       if (req.body.groups) {
         Group.findAll({
           where: {
-            name: {
+            group_name: {
               [Op.or]: req.body.groups
             }
           }

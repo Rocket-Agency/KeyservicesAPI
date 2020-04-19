@@ -20,6 +20,7 @@
     "express": "^4.17.1",
     "express-generator": "^4.16.1",
     "express-handlebars": "^3.1.0",
+    "express-winston": "^4.0.3",
     "faker": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
     "mariadb": "^2.3.1",
@@ -40,6 +41,7 @@
     "swagger-ui-dist": "^3.25.0",
     "swagger-ui-express": "^4.1.4",
     "to-integer": "^1.0.1",
+    "winston": "^3.2.1",
     "yamljs": "^0.3.0"
   }
 }

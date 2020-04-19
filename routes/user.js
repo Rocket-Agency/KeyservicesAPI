@@ -69,7 +69,7 @@ module.exports = (app) => {
      *      '200':
      *        description: A successful response
      */
-    app.get('/api/users', userController.getAllUsers);
+    /*app.get('/api/users', userController.getAllUsers);*/
 
     /**
      * @swagger

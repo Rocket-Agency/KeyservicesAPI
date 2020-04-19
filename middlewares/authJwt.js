@@ -27,9 +27,9 @@ verifyToken = (req, res, next) => {
 
 isAdmin = (req, res, next) => {
   User.findByPk(req.userId).then(user => {
-    user.getRoles().then(roles => {
-      for (let i = 0; i < roles.length; i++) {
-        if (roles[i].name === "admin") {
+    user.getGroups().then(groups => {
+      for (let i = 0; i < groups.length; i++) {
+        if (groups[i].group_name === "admin") {
           next();
           return;
         }
@@ -45,9 +45,9 @@ isAdmin = (req, res, next) => {
 
 isLocataire = (req, res, next) => {
   User.findByPk(req.userId).then(user => {
-    user.getRoles().then(roles => {
-      for (let i = 0; i < roles.length; i++) {
-        if (roles[i].name === "Locataire") {
+    user.getGroups().then(groups => {
+      for (let i = 0; i < groups.length; i++) {
+        if (groups[i].group_name === "Locataire") {
           next();
           return;
         }
@@ -62,9 +62,9 @@ isLocataire = (req, res, next) => {
 
 isProprietaire = (req, res, next) => {
   User.findByPk(req.userId).then(user => {
-    user.getRoles().then(roles => {
-      for (let i = 0; i < roles.length; i++) {
-        if (roles[i].name === "Proprietaire") {
+    user.getGroups().then(groups => {
+      for (let i = 0; i < groups.length; i++) {
+        if (groups[i].group_name === "Proprietaire") {
           next();
           return;
         }
