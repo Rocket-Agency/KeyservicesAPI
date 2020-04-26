@@ -7,7 +7,7 @@ module.exports = {
 
     async generateAddress(req, res) {
         try {
-            for (let id = 1; id <= 50; id++) {
+            for (let id = 1; id <= 10; id++) {
                 let road_number = faker.random.number();
                 let road_type = 'rue';
                 let road_name = faker.address.streetName();
@@ -54,7 +54,6 @@ module.exports = {
     },
 
     async getAddressById(req,res) {
-        console.log(req);
         try {
 
             const addressCollection = await Address.findAll({
@@ -74,14 +73,14 @@ module.exports = {
 
     async createAddress(req,res) {
         try {
-                let road_number = req.params.roadnumber;
-                let road_type = req.params.roadtype;
-                let road_name = req.params.roadname;
-                let info = req.params.info;
-                let state = req.params.info;
-                let city = req.params.city;
-                let zip_code = req.params.zipcode;
-                let userID = req.params.userid;
+                let road_number = req.body.roadnumber;
+                let road_type = req.body.roadtype;
+                let road_name = req.body.roadname;
+                let info = req.body.info;
+                let state = req.body.state;
+                let city = req.body.city;
+                let zip_code = req.body.zipcode;
+                let userID = req.body.userid;
 
                 const addressCollection = await Address.create({
                     address_id : '',
@@ -95,7 +94,7 @@ module.exports = {
                     address_txt : road_number+' '+road_type+' '
                                 +road_name+' '+zip_code+' ,'+city,
                     deleted : ' ',
-                    address_user_id :userID,
+                    address_user_id : userID,
                 })
             
             res.status(200).send(addressCollection);

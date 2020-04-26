@@ -37,7 +37,7 @@ module.exports = (app) => {
      */
     app.get('/api/address/:id', addressController.getAddressById);
 
-    app.get('/api/addressAdd/:roadnumber/:roadtype/:roadname/:info/:state/:city/:zipcode/:userid', addressController.createAddress);
+    app.post('/api/addressAdd/', addressController.createAddress);
 
     app.get('/api/addressDel/:addressId', addressController.deleteAddress);
 }

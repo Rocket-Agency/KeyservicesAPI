@@ -18,7 +18,6 @@ const {
         allowNull: true,
         defaultValue: null,
         primaryKey: false,
-        autoIncrement: true,
         comment: null,
         field: "installation_parking"
       },
@@ -27,7 +26,6 @@ const {
         allowNull: true,
         defaultValue: null,
         primaryKey: false,
-        autoIncrement: true,
         comment: null,
         field: "installation_gym"
       },
@@ -36,7 +34,6 @@ const {
         allowNull: true,
         defaultValue: null,
         primaryKey: false,
-        autoIncrement: true,
         comment: null,
         field: "installation_pool"
       },
@@ -45,7 +42,6 @@ const {
         allowNull: true,
         defaultValue: null,
         primaryKey: false,
-        autoIncrement: true,
         comment: null,
         field: "installation_jaccuzi"
       }

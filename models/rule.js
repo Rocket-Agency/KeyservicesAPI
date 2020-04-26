@@ -18,7 +18,6 @@ const {
         allowNull: true,
         defaultValue: null,
         primaryKey: false,
-        autoIncrement: true,
         comment: null,
         field: "rule_age_2_12"
       },
@@ -27,7 +26,6 @@ const {
         allowNull: true,
         defaultValue: null,
         primaryKey: false,
-        autoIncrement: true,
         comment: null,
         field: "rule_age_2"
       },
@@ -36,7 +34,6 @@ const {
         allowNull: true,
         defaultValue: null,
         primaryKey: false,
-        autoIncrement: true,
         comment: null,
         field: "rule_pets"
       },
@@ -45,7 +42,6 @@ const {
         allowNull: true,
         defaultValue: null,
         primaryKey: false,
-        autoIncrement: true,
         comment: null,
         field: "rule_smoking"
       },
@@ -54,7 +50,6 @@ const {
         allowNull: true,
         defaultValue: null,
         primaryKey: false,
-        autoIncrement: true,
         comment: null,
         field: "rule_event"
       },
@@ -63,7 +58,6 @@ const {
         allowNull: true,
         defaultValue: null,
         primaryKey: false,
-        autoIncrement: true,
         comment: null,
         field: "rule_add"
       }

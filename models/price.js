@@ -7,7 +7,6 @@ const {
       price_id: {
         type: DataTypes.INTEGER(11),
         allowNull: false,
-        defaultValue: null,
         primaryKey: true,
         autoIncrement: true,
         comment: null,
@@ -16,27 +15,21 @@ const {
       price_starting: {
         type: DataTypes.STRING(45),
         allowNull: false,
-        defaultValue: null,
         primaryKey: false,
-        autoIncrement: true,
         comment: null,
         field: "price_starting"
       },
       price_min: {
         type: DataTypes.STRING(45),
         allowNull: false,
-        defaultValue: null,
         primaryKey: false,
-        autoIncrement: true,
         comment: null,
         field: "price_min"
       },
       price_max: {
         type: DataTypes.STRING(45),
         allowNull: false,
-        defaultValue: null,
         primaryKey: false,
-        autoIncrement: true,
         comment: null,
         field: "price_max"
       }
