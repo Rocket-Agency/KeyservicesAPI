@@ -15,8 +15,11 @@ const Sequelize = require("sequelize");
 const sequelize = new Sequelize(DB, USER, PASSWORD, {
   host: HOST,
   dialect: DIALECT,
+  dialectOptions: {
+    timezone: 'Europe/Paris',
+  },
   timestamps: false,
-  operatorsAliases: false,
+  /*operatorsAliases: false,*/
 
   pool: {
     max: toInteger(POOLMAX),

@@ -99,6 +99,8 @@ app.use(expressWinston.errorLogger({
   )
 }));
 
-app.listen(PORT,() => {
+const server = app.listen(PORT,() => {
     console.log(`Server is listening to port ${PORT}`)
 })
+
+module.exports = server;

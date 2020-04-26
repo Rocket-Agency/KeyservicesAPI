@@ -6,10 +6,22 @@ const Op = db.Sequelize.Op;
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
+var nodemailer = require('nodemailer');
 require('dotenv').config();
 var toInteger = require('to-integer');
 
 const secret = process.env.SECRET_KEY;
+
+var transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false,
+  requireTLS: true,
+  auth: {
+         user: 'dbougouffa@gmail.com',
+         pass: 'Laracroft77'
+     }
+ });
 
 exports.signup = (req, res) => {
   // Save User to Database
@@ -32,14 +44,40 @@ exports.signup = (req, res) => {
             }
           }
         }).then(groups => {
-          user.setGroups(groups).then(() => {
-            res.send({ message: "User was registered successfully!" });
+            user.setGroups(groups).then(() => {
+            const message = {
+                from: 'dbougouffa@gmail.com', // Sender address
+                to: req.body.email,         // List of recipients
+                subject: 'Bienvenue sur Keyservices !', // Subject line
+                text: 'Veuillez vous rendre dans Mon espace' // Plain text body
+            };
+            transporter.sendMail(message, function(err, info) {
+                if (err) {
+                  console.log(err)
+                } else {
+                  console.log(info);
+                }
+            });
+            res.status(200).send({ message: "User was registered successfully!" });
           });
         });
       } else {
         // user role = 5
         user.setGroups([5]).then(() => {
-          res.send({ message: "User was registered successfully!" });
+          const message = {
+              from: 'dbougouffa@gmail.com', // Sender address
+              to: req.body.email,         // List of recipients
+              subject: 'Bienvenue sur Keyservices !', // Subject line
+              text: 'Veuillez vous rendre dans Mon espace' // Plain text body
+          };
+          transporter.sendMail(message, function(err, info) {
+              if (err) {
+                console.log(err)
+              } else {
+                console.log(info);
+              }
+          });
+          res.status(200).send({ message: "User was registered successfully!" });
         });
       }
     })
