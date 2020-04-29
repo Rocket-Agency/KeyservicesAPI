@@ -59,6 +59,11 @@ db.user.belongsToMany(db.group, {
   otherKey: "group_id"
 });
 
+
+// une addresse appartient a un et un seul user && un user peut avoir plusieur address
+db.address.belongsTo(db.user);
+db.user.hasMany(db.address);
+
 db.GROUPS = ["admin", "proprietaire", "locataire", "concierge", "user"];
 
 module.exports = db;

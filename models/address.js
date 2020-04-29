@@ -77,6 +77,14 @@ module.exports = sequelize => {
       comment: null,
       field: "address_txt"
     },
+    address_primaire: {
+      type: DataTypes.STRING(45),
+      allowNull: false,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "address_primaire"
+    },
     deleted: {
       type: DataTypes.INTEGER(11),
       allowNull: true,
@@ -85,29 +93,29 @@ module.exports = sequelize => {
       autoIncrement: false,
       comment: null,
       field: "deleted"
-    },
-    address_user_id: {
-      type: DataTypes.INTEGER(11),
-      allowNull: false,
-      primaryKey: false,
-      autoIncrement: false,
-      comment: null,
-      field: "address_user_id",
-      references: {
-        key: "user_id",
-        model: "users"
-      }
     }
+    // address_user_id: {
+    //   type: DataTypes.INTEGER(11),
+    //   allowNull: false,
+    //   primaryKey: false,
+    //   autoIncrement: false,
+    //   comment: null,
+    //   field: "address_user_id",
+    //   references: {
+    //     key: "user_id",
+    //     model: "users"
+    //   }
+    // }
   };
   const options = {
     tableName: "address",      
     comment: "",
-    index: [{
-      name: "usersid",
-      unique: true,
-      type: "BTREE",
-      fields: ["address_user_id"]
-    }]
+    // index: [{
+    //   name: "usersid",
+    //   unique: true,
+    //   type: "BTREE",
+    //   fields: ["address_user_id"]
+    // }]
   };
   const AddressModel = sequelize.define("address_model", attributes, options);
   return AddressModel;

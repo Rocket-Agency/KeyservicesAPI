@@ -1,5 +1,5 @@
 const db = require('../models');
-const Address = db['address'];
+const Address = db.address;
 const faker = require('faker');
 require('dotenv').config();
 
@@ -26,6 +26,7 @@ module.exports = {
                     address_txt : road_number+' '+road_type+' '
                                 +road_name+' '+zip_code+' ,'+city,
                     deleted : ' ',
+                    address_primaire :'1',
                     address_user_id :id,
                 })
             }
@@ -71,7 +72,7 @@ module.exports = {
 
     },
 
-    async createAddress(req,res) {
+    async createAddressUser(req,res) {
         try {
                 let road_number = req.body.roadnumber;
                 let road_type = req.body.roadtype;
@@ -107,25 +108,6 @@ module.exports = {
 
     },
 
-    // async updateAddress(req,res) {
-    //     try {
-    //         let addressId = req.params.addressId;
-
-    //         const addressCollection = await Address.destroy({
-    //             where:{
-    //                 address_id : addressId
-    //             }
-    //         })
-        
-    //     res.status(200).send("Modification effective");
-    //     }
-    //     catch(e){
-    //         console.log(e);
-
-    //         res.status(400).send(e);
-    //     }
-    // },
-
     async deleteAddress(req,res) {
         try {
                 let addressId = req.params.addressId;
@@ -144,4 +126,4 @@ module.exports = {
             res.status(400).send(e);
         }
     }
-}
+};

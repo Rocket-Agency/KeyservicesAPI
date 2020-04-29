@@ -51,7 +51,7 @@ module.exports = sequelize => {
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "housing_type"
+      field: "housing_observation"
     },
     deleted: {
       type:  DataTypes.INTEGER(11),

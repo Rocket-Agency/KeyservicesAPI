@@ -1,5 +1,15 @@
 const db = require('../models');
-const Ad = db['ad'];
+const User = db.user;
+const Address = db.address;
+const Ad = db.ad;
+const Housing = db.housing;
+const Installation = db.installation;
+const Equipment = db.equipment;
+const Info = db.info;
+const Rule = db.rule;
+const Price = db.price;
+addressController = require('../controllers/address');
+
 const faker = require('faker');
 require('dotenv').config();
 
@@ -41,7 +51,7 @@ module.exports = {
                     deleted : '' ,
                     ad_housing_id : housing_id,
                     ad_user_id : user_id,
-                    ad_housing_price : housing_price,
+                    ad_housing_price_id : housing_price,
                 })
             }
             res.status(200).send("Table Ad generer");
@@ -81,5 +91,5 @@ module.exports = {
             res.status(400).send(e);
         }
 
-    },
-}
+    }
+};
