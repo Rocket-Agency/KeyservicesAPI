@@ -47,7 +47,6 @@ module.exports = {
             const userCollection = await User.findOne({
               where: { user_id: userId }
             })
-            
             .then(user => {
                 var authorities = [];
                 user.getGroups().then(groups =>{
@@ -58,6 +57,11 @@ module.exports = {
                         user_id : user.user_id,
                         user_first_name: user.user_first_name,
                         user_last_name: user.user_last_name,
+                        user_date_of_birth: user.user_date_of_birth,
+                        user_sexe: user.user_sexe,
+                        user_photo: user.user_photo,
+                        user_email: user.user_email,
+                        user_adresse_txt: user.user_adresse_txt,
                         user_group : authorities
                     });
                 })
