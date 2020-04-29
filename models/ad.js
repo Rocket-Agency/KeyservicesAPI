@@ -112,7 +112,7 @@ module.exports = sequelize => {
         model: "users"
       }
     },
-    ad_housing_price: {
+    ad_housing_price_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: false,

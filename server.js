@@ -93,7 +93,7 @@ require('./routes/rule')(app);
 require('./routes/housing')(app);
 require('./routes/price')(app);
 require('./routes/ad')(app);
-
+require('./routes/createAd')(app);
 // express-winston errorLogger makes sense AFTER the router.
 app.use(expressWinston.errorLogger({
   transports: [

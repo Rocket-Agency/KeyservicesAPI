@@ -8,17 +8,20 @@ module.exports = {
 
     async generateUsers(req, res) {
         try {
-            const userCollection = await User.create({
-                user_last_name : faker.name.firstName(),
-                user_first_name : faker.name.lastName(),
-                user_date_of_birth : new Date().toISOString().slice(0, 19).replace('T', ' '),
-                user_sexe : 'Homme',
-                user_photo : 'photo.pnj',
-                user_email : faker.internet.email(),
-                user_password : faker.internet.password(),
-                user_adresse_txt : faker.address.streetAddress(),
-            })
-            res.status(200).send(userCollection);
+
+            for (let id = 1; id <= 10; id++) {
+                const userCollection = await User.create({
+                    user_last_name : faker.name.firstName(),
+                    user_first_name : faker.name.lastName(),
+                    user_date_of_birth : new Date().toISOString().slice(0, 19).replace('T', ' '),
+                    user_sexe : 'Homme',
+                    user_photo : 'photo.pnj',
+                    user_email : faker.internet.email(),
+                    user_password : faker.internet.password(),
+                    user_adresse_txt : faker.address.streetAddress(),
+                })
+           }
+            res.status(200).send("Table users generer");
         }
         catch(e) {
             console.log(e);
