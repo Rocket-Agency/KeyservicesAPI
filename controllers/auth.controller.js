@@ -11,6 +11,7 @@ require('dotenv').config();
 var toInteger = require('to-integer');
 
 const secret = process.env.SECRET_KEY;
+var generator = require('generate-password');
 
 var transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
@@ -129,4 +130,32 @@ exports.signin = (req, res) => {
     .catch(err => {
       res.status(500).send({ message: err.message });
     });
+};
+
+exports.passwordreset = (req,res) => {
+  var password = generator.generate({
+    length: 10,
+    numbers: true
+  })
+  User.update({
+    user_password : bcrypt.hashSync(password, 8)
+  },
+  {where: {user_email: req.body.email}
+  })
+  const message = {
+    from: 'dbougouffa@gmail.com', // Sender address
+    to: req.body.email, // List of recipients
+    subject: 'Change de mot de passe Keyservices', // Subject line
+    text: 'Voici votre nouveau mot de passe ' + password // Plain text body
+  };
+  transporter.sendMail(message, function(err, info) {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log(info);
+    }
+  });
+  res.status(200).send({
+    message: "Password reset !" + password  
+  })
 };
