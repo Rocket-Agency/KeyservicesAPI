@@ -26,7 +26,7 @@ module.exports = function(app) {
   );
   app.put(
     "/api/user/update/:userId",
-    [authJwt.verifyToken, authJwt.isAdmin],
+    [authJwt.verifyToken],
     userController.update
   );
   app.delete(

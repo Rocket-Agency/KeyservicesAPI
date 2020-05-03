@@ -11,7 +11,7 @@ require('dotenv').config();
 const HOST = process.env.HOST;
 const PORT = process.env.PORT;
 
-// https://swagger.io/specification/#infoObject
+// https://swagger.io/specification/#infoObjec
 const swaggerOptions = {
     swaggerDefinition : {
       info: {

@@ -19,8 +19,8 @@ var transporter = nodemailer.createTransport({
   secure: false,
   requireTLS: true,
   auth: {
-         user: 'dbougouffa@gmail.com',
-         pass: 'Laracroft77'
+         user: 'contact.keyservices2020@gmail.com',
+         pass: 'Kerservices2020'
      }
  });
 
@@ -47,7 +47,7 @@ exports.signup = (req, res) => {
         }).then(groups => {
             user.setGroups(groups).then(() => {
             const message = {
-                from: 'dbougouffa@gmail.com', // Sender address
+                from: 'contact.keyservices2020@gmail.com', // Sender address
                 to: req.body.email,         // List of recipients
                 subject: 'Bienvenue sur Keyservices !', // Subject line
                 text: 'Veuillez vous rendre dans Mon espace' // Plain text body
@@ -66,7 +66,7 @@ exports.signup = (req, res) => {
         // user role = 5
         user.setGroups([5]).then(() => {
           const message = {
-              from: 'dbougouffa@gmail.com', // Sender address
+              from: 'contact.keyservices2020@gmail.com', // Sender address
               to: req.body.email,         // List of recipients
               subject: 'Bienvenue sur Keyservices !', // Subject line
               text: 'Veuillez vous rendre dans Mon espace' // Plain text body
@@ -143,9 +143,9 @@ exports.passwordreset = (req,res) => {
   {where: {user_email: req.body.email}
   })
   const message = {
-    from: 'dbougouffa@gmail.com', // Sender address
+    from: 'contact.keyservices2020@gmail.com', // Sender address
     to: req.body.email, // List of recipients
-    subject: 'Change de mot de passe Keyservices', // Subject line
+    subject: 'Changement de mot de passe Keyservices', // Subject line
     text: 'Voici votre nouveau mot de passe ' + password // Plain text body
   };
   transporter.sendMail(message, function(err, info) {
