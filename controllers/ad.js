@@ -1,13 +1,5 @@
 const db = require('../models');
-const User = db.user;
-const Address = db.address;
 const Ad = db.ad;
-const Housing = db.housing;
-const Installation = db.installation;
-const Equipment = db.equipment;
-const Info = db.info;
-const Rule = db.rule;
-const Price = db.price;
 addressController = require('../controllers/address');
 
 const faker = require('faker');
@@ -65,7 +57,9 @@ module.exports = {
     async getAllAd(req,res){
         try{
 
-            const AdCollection = await Ad.findAll({});
+            const AdCollection = await Ad.findAll({
+                where: {deleted : null}
+            });
             res.setHeader('Content-Type', 'application/json');
             res.status(200).send(AdCollection);
         }
@@ -76,11 +70,11 @@ module.exports = {
         }
     },
 
-    async getAdByUserId(req,res) {
+    async getAdById(req,res) {
         try {
 
             const adCollection = await Ad.findAll({
-                where     : {ad_user_id: req.params.id}
+                where     : {ad_id: req.params.adId}
             });
             res.setHeader('Content-Type', 'application/json');
             res.status(200).send(adCollection);
@@ -91,5 +85,70 @@ module.exports = {
             res.status(400).send(e);
         }
 
+    },
+
+    async getAdByUserId(req,res) {
+        try {
+
+            const adCollection = await Ad.findAll({
+                where     : {ad_user_id: req.params.userId}
+            });
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).send(adCollection);
+        }
+        catch(e){
+            console.log(e);
+
+            res.status(400).send(e);
+        }
+
+    },
+
+    async updateAd(req,res) {
+        try {
+            var adId = req.params.adId;
+            var adUpdate = req.body;
+            let adUpdateValues= new Object();
+            for(value in adUpdate){
+                if(adUpdate[value] !== ''){
+                    adUpdateValues[value] = adUpdate[value];
+                }
+            }
+
+            console.log(adUpdateValues);
+
+            const adCollection = await Ad.update(
+                adUpdateValues,
+                {
+                where     : {ad_id: adId}
+            });
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).send('mise a jours réusis');
+        }
+        catch(e){
+            console.log(e);
+
+            res.status(400).send(e);
+        }
+
+    },
+
+    async deleteAd(req,res){
+        try{
+            const delCollection = await Ad.update({
+                deleted   : 1
+                },
+                {
+                where     : {ad_id: req.params.adId}
+            });
+
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).send("l'annonce "+ req.params.adId +" à était suprimer");
+        }
+        catch(e){
+            console.log(e);
+
+            res.status(400).send(e);
+        }
     }
 };

@@ -17,7 +17,7 @@ module.exports = (app) => {
      *      '200':
      *        description: A successful response
      */
-    app.get('/api/address', addressController.getAllAddress);
+    app.get('/address/', addressController.getAllAddress);
 
 
     /**
@@ -35,9 +35,14 @@ module.exports = (app) => {
      *      '200':
      *        description: A successful response
      */
-    app.get('/api/address/:id', addressController.getAddressById);
+    app.get('/address/getAddressById/:addressId', addressController.getAddressById);
 
-    app.post('/api/UseraddressAdd/', addressController.createAddressUser);
+    app.get('/address/getAddressByUserId/:userId', addressController.getAddressByUserId);
 
-    app.get('/api/addressDel/:addressId', addressController.deleteAddress);
+    app.post('/address/UseraddressAdd/', addressController.createAddressUser);
+
+    app.put('/address/update/:addressId', addressController.updateAddress);
+
+    app.get('/address/delete/:addressId', addressController.deleteAddress);
+    
 };

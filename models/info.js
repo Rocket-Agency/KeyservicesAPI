@@ -116,6 +116,15 @@ const {
         primaryKey: false,
         comment: null,
         field: "info_dangerous_animals"
+      },
+      deleted: {
+        type:  DataTypes.INTEGER(11),
+        allowNull: true,
+        defaultValue: null,
+        primaryKey: false,
+        autoIncrement: false,
+        comment: null,
+        field: "deleted"
       }
     };
     const options = {

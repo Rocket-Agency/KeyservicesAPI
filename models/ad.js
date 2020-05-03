@@ -83,7 +83,7 @@ module.exports = sequelize => {
       field: "ad_ending_date"
     },
     deleted: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING(45),
       allowNull: true,
       defaultValue: null,
       primaryKey: false,

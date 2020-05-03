@@ -60,6 +60,15 @@ const {
         primaryKey: false,
         comment: null,
         field: "rule_add"
+      },
+      deleted: {
+        type:  DataTypes.INTEGER(11),
+        allowNull: true,
+        defaultValue: null,
+        primaryKey: false,
+        autoIncrement: false,
+        comment: null,
+        field: "deleted"
       }
     };
     const options = {

@@ -24,6 +24,7 @@ module.exports = {
                     rule_smoking : smoking,
                     rule_event : event,
                     rule_add : add,
+                    deleted : ''
                 })
             }
             res.status(200).send("Table Rule generer");
@@ -37,9 +38,74 @@ module.exports = {
     async getAllRule(req,res){
         try{
 
-            const ruleCollection = await Rule.findAll({});
+            const ruleCollection = await Rule.findAll({
+                where : {deleted : 0}
+            });
             res.setHeader('Content-Type', 'application/json');
             res.status(200).send(ruleCollection);
+        }
+        catch(e){
+            console.log(e);
+
+            res.status(400).send(e);
+        }
+    },
+
+    async getRuleById(req,res){
+        try{
+
+            const ruleCollection = await Rule.findAll({
+                where     : {rule_id: req.params.ruleId}
+            });
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).send(ruleCollection);
+        }
+        catch(e){
+            console.log(e);
+
+            res.status(400).send(e);
+        }
+    },
+
+    async updateRule(req,res){
+        try {
+            var ruleId = req.params.ruleId;
+            var ruleUpdate = req.body;
+            let ruleUpdateValues= new Object();
+            for(value in ruleUpdate){
+                if(ruleUpdate[value] !== ''){
+                    ruleUpdateValues[value] = ruleUpdate[value];
+                }
+            }
+
+            console.log(ruleUpdateValues);
+
+            const ruleCollection = await Rule.update(
+                ruleUpdateValues,
+                {
+                where     : {rule_id: ruleId}
+            });
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).send('mise a jours réusis');
+        }
+        catch(e){
+            console.log(e);
+
+            res.status(400).send(e);
+        }
+    },
+
+    async deleteRule(req,res){
+        try{
+            const delCollection = await Rule.update({
+                deleted   : 1
+                },
+                {
+                where     : {rule_id: req.params.ruleId}
+            });
+
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).send("l'annonce "+ req.params.ruleId +" à était suprimer");
         }
         catch(e){
             console.log(e);

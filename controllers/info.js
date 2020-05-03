@@ -39,6 +39,7 @@ module.exports = {
                     info_monitoring_device : monitoring_device,
                     info_weapons : weapons,
                     info_dangerous_animals : dangerous_animals,
+                    deleted : ''
                 })
             }
             res.status(200).send("Table Info generer");
@@ -52,9 +53,74 @@ module.exports = {
     async getAllInfo(req,res){
         try{
 
-            const infoCollection = await Info.findAll({});
+            const infoCollection = await Info.findAll({
+                where :{deleted : 0}
+            });
             res.setHeader('Content-Type', 'application/json');
             res.status(200).send(infoCollection);
+        }
+        catch(e){
+            console.log(e);
+
+            res.status(400).send(e);
+        }
+    },
+
+    async getInfoById(req,res){
+        try{
+
+            const infoCollection = await Info.findAll({
+                where     : {info_id: req.params.infoId}
+            });
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).send(infoCollection);
+        }
+        catch(e){
+            console.log(e);
+
+            res.status(400).send(e);
+        }
+    },
+
+    async updateInfo(req,res){
+        try {
+            var infoId = req.params.infoId;
+            var infoUpdate = req.body;
+            let infoUpdateValues= new Object();
+            for(value in infoUpdate){
+                if(infoUpdate[value] !== ''){
+                    infoUpdateValues[value] = infoUpdate[value];
+                }
+            }
+
+            console.log(infoUpdateValues);
+
+            const infoCollection = await Info.update(
+                infoUpdateValues,
+                {
+                where     : {info_id: infoId}
+            });
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).send('mise a jours réusis');
+        }
+        catch(e){
+            console.log(e);
+
+            res.status(400).send(e);
+        }
+    },
+
+    async deleteInfo(req,res){
+        try{
+            const delCollection = await Info.update({
+                deleted   : 1
+                },
+                {
+                where     : {info_id: req.params.infoId}
+            });
+
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).send("l'annonce "+ req.params.infoId +" à était suprimer");
         }
         catch(e){
             console.log(e);

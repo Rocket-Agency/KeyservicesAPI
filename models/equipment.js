@@ -113,7 +113,7 @@ module.exports = sequelize => {
       field: "equipment_television"
     },
     deleted: {
-      type: DataTypes.DATE,
+      type: DataTypes.INTEGER(11),
       allowNull: true,
       defaultValue: null,
       primaryKey: false,

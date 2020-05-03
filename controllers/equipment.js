@@ -48,9 +48,72 @@ module.exports = {
     async getAllEquipment(req,res){
         try{
 
-            const equipmentCollection = await Equipment.findAll({});
+            const equipmentCollection = await Equipment.findAll({
+                where: {deleted : 0}
+            });
             res.setHeader('Content-Type', 'application/json');
             res.status(200).send(equipmentCollection);
+        }
+        catch(e){
+            console.log(e);
+
+            res.status(400).send(e);
+        }
+    },
+
+    async getEquipmentById(req,res){
+        try{
+            const equipmentCollection = await Equipment.findAll({
+                where     : {equipment_id: req.params.equipmentId}
+            });
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).send(equipmentCollection);
+        }
+        catch(e){
+            console.log(e);
+            res.status(400).send(e);
+        }
+    },
+
+    async updateEquipment(req,res){
+        try {
+            var equipmentId = req.params.equipmentId;
+            var equipmentUpdate = req.body;
+            let equipmentUpdateValues= new Object();
+            for(value in equipmentUpdate){
+                if(equipmentUpdate[value] !== ''){
+                    equipmentUpdateValues[value] = equipmentUpdate[value];
+                }
+            }
+
+            console.log(equipmentUpdateValues);
+
+            const equipmentCollection = await Equipment.update(
+                equipmentUpdateValues,
+                {
+                where     : {equipment_id: equipmentId}
+            });
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).send('mise a jours réusis');
+        }
+        catch(e){
+            console.log(e);
+
+            res.status(400).send(e);
+        }
+    },
+
+    async deleteEquipment(req,res){
+        try{
+            const delCollection = await Equipment.update({
+                deleted   : 1
+                },
+                {
+                where     : {equipment_id: req.params.equipmentId}
+            });
+
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).send("l'annonce "+ req.params.equipmentId +" à était suprimer");
         }
         catch(e){
             console.log(e);

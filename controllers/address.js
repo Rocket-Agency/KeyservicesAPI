@@ -27,7 +27,7 @@ module.exports = {
                                 +road_name+' '+zip_code+' ,'+city,
                     deleted : ' ',
                     address_primaire :'1',
-                    address_user_id :id,
+                    userUserId :id,
                 })
             }
             res.status(200).send("Table Address generer");
@@ -42,7 +42,9 @@ module.exports = {
 
         try {
 
-            const addressCollection = await Address.findAll({});
+            const addressCollection = await Address.findAll({
+                where: {deleted : 0}
+            });
             res.setHeader('Content-Type', 'application/json');
             res.status(200).send(addressCollection);
         }
@@ -58,8 +60,24 @@ module.exports = {
         try {
 
             const addressCollection = await Address.findAll({
-                attributes : ['address_txt'],
-                where     : {address_id: req.params.id}
+                where     : {address_id: req.params.addressId}
+            });
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).send(addressCollection);
+        }
+        catch(e){
+            console.log(e);
+
+            res.status(400).send(e);
+        }
+
+    },
+
+    async getAddressByUserId(req,res) {
+        try {
+
+            const addressCollection = await Address.findAll({
+                where     : {userUserId: req.params.userId}
             });
             res.setHeader('Content-Type', 'application/json');
             res.status(200).send(addressCollection);
@@ -95,7 +113,7 @@ module.exports = {
                     address_txt : road_number+' '+road_type+' '
                                 +road_name+' '+zip_code+' ,'+city,
                     deleted : ' ',
-                    address_user_id : userID,
+                    userUserId : userID,
                 })
             
             res.status(200).send(addressCollection);
@@ -108,17 +126,45 @@ module.exports = {
 
     },
 
+    async updateAddress(req,res) {
+        try {
+            var addressId = req.params.addressId;
+            var addressUpdate = req.body;
+            let addressUpdateValues= new Object();
+            for(value in addressUpdate){
+                if(addressUpdate[value] !== ''){
+                    addressUpdateValues[value] = addressUpdate[value];
+                }
+            }
+
+            const adCollection = await Address.update(
+                addressUpdateValues,
+                {
+                where     : {address_id: addressId}
+            });
+            
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).send('mise a jours réusis');
+        }
+        catch(e){
+            console.log(e);
+
+            res.status(400).send(e);
+        }
+
+    },
+
     async deleteAddress(req,res) {
         try {
-                let addressId = req.params.addressId;
-
-                const addressCollection = await Address.destroy({
-                    where:{
-                        address_id : addressId
-                    }
-                })
+                
+                const addressCollection = await Address.update({
+                    deleted   : 1
+                },
+                {
+                where     : {address_id: req.params.addressId}
+                });
             
-            res.status(200).send("suppresion effective");
+            res.status(200).send("l'annonce "+ req.params.addressId +" à était suprimer");
         }
         catch(e){
             console.log(e);

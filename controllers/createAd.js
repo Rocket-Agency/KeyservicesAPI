@@ -25,7 +25,7 @@ exports.adCreate = (req, res) =>{
                     +req.body.address_road_name+' '+req.body.address_zip_code+' ,'+req.body.address_city,
         deleted : ' ',
         address_primaire : 0,
-        address_user_id : req.body.userId,
+        userUserId : req.body.userId,
     }).then(address => {
         Equipment.create({ //Création de l'equipement de la maison 
             equipment_kitchen : req.body.equipment_kitchen,

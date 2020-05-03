@@ -62,13 +62,13 @@ module.exports = sequelize => {
       comment: null,
       field: "deleted"
     },
-    housing_adress_id: {
+    housing_address_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "housing_adress_id",
+      field: "housing_address_id",
       references: {
         key: "address_id",
         model: "address"
@@ -131,7 +131,7 @@ module.exports = sequelize => {
       name: "housingAaddress",
       unique: true,
       type: "BTREE",
-      fields: ["housing_adress_id"]
+      fields: ["housing_address_id"]
     }, {
       name: "housingEquipment",
       unique: true,
