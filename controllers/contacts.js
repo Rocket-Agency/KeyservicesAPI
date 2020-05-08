@@ -2,6 +2,18 @@ const db = require('../models');
 const Contact = db['contact'];
 const faker = require('faker');
 require('dotenv').config();
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
+    requireTLS: true,
+    auth: {
+           user: 'contact.keyservices2020@gmail.com',
+           pass: 'Kerservices2020'
+       }
+   });
 
 module.exports = {
     
@@ -49,6 +61,19 @@ module.exports = {
                 contact_email : req.body.email,
                 contact_object : req.body.object,
                 contact_message : req.body.message,
+            });
+            const message = {
+                from: 'contact.keyservices2020@gmail.com', // Sender address
+                to: 'contact.keyservices2020@gmail.com', // List of recipients
+                subject: req.body.object, // Subject line
+                text: req.body.first_name + ' , ' + req.body.last_name + ' , ' + req.body.email + ' Objet : ' + req.body.object + ' Message : ' + req.body.message // Plain text body
+            };
+            transporter.sendMail(message, function(err, info) {
+                if (err) {
+                  console.log(err)
+                } else {
+                  console.log(info);
+                }
             });
             res.status(200).send(contactCollection);
         }
