@@ -15,11 +15,18 @@ module.exports = sequelize => {
     photo_name: {
       type: DataTypes.STRING(45),
       allowNull: false,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
       field: "photo_name"
+    },
+    photo_filename: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "photo_filename"
     },
     photo_description: {
       type: DataTypes.STRING(45),
@@ -30,35 +37,28 @@ module.exports = sequelize => {
       comment: null,
       field: "photo_description"
     },
-    photo_in_file: {
+    photo_link: {
       type: DataTypes.STRING(45),
       allowNull: false,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "photo_in_file"
+      field: "photo_link"
     },
-    created: {
-      type: DataTypes.DATE,
+    photo_size: {
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      defaultValue: null,
-      primaryKey: false,
-      autoIncrement: false,
       comment: null,
-      field: "created"
+      field: "photo_size"
     },
-    updated: {
-      type: DataTypes.DATE,
-      allowNull: true,
-      defaultValue: null,
-      primaryKey: false,
-      autoIncrement: false,
+    photo_ad_id: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false,
       comment: null,
-      field: "updated"
+      field: "photo_ad_id"
     },
     deleted: {
-      type: DataTypes.DATE,
+      type: DataTypes.INTEGER(11),
       allowNull: true,
       defaultValue: null,
       primaryKey: false,
@@ -66,29 +66,28 @@ module.exports = sequelize => {
       comment: null,
       field: "deleted"
     },
-    photo_ad_id: {
-      type: DataTypes.INTEGER(11),
-      allowNull: false,
-      defaultValue: null,
-      primaryKey: false,
-      autoIncrement: false,
-      comment: null,
-      field: "photo_ad_id",
-      references: {
-        key: "ad_id",
-        model: "ad_model"
-      }
-    }
+    // photo_ad_id: {
+    //   type: DataTypes.INTEGER(11),
+    //   allowNull: false,
+    //   primaryKey: false,
+    //   autoIncrement: false,
+    //   comment: null,
+    //   field: "photo_ad_id",
+    //   references: {
+    //     key: "ad_id",
+    //     model: "ad_model"
+    //   }
+    // }
   };
   const options = {
     tableName: "photo",
     comment: "",
-    indexes: [{
-      name: "ad_id",
-      unique: false,
-      type: "BTREE",
-      fields: ["photo_ad_id"]
-    }]
+    // index: [{
+    //   name: "ad_id",
+    //   unique: false,
+    //   type: "BTREE",
+    //   fields: ["photo_ad_id"]
+    // }]
   };
   const PhotoModel = sequelize.define("photo_model", attributes, options);
   return PhotoModel;
