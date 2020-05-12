@@ -1,5 +1,5 @@
 createAdController = require('../controllers/createAd');
-
+const { authJwt } = require("../middlewares");
 const multer = require('multer');
 
 var storage = multer.diskStorage({
@@ -22,5 +22,5 @@ module.exports = function(app) {
     });
       
 
-app.post('/api/adcreate/',upload.array("file",9),createAdController.adCreate);
+app.post('/api/adcreate/',authJwt.verifyToken,authJwt.isProprietaire,upload.array("file",9),createAdController.adCreate);
 }

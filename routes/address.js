@@ -1,4 +1,5 @@
 addressController = require('../controllers/address');
+const { authJwt } = require("../middlewares");
 module.exports = (app) => {
     app.get('/address/generate', addressController.generateAddress);
     
@@ -17,7 +18,7 @@ module.exports = (app) => {
      *      '200':
      *        description: A successful response
      */
-    app.get('/address/', addressController.getAllAddress);
+    app.get('/address/',authJwt.verifyToken,authJwt.isAdmin, addressController.getAllAddress);
 
 
     /**
@@ -35,14 +36,14 @@ module.exports = (app) => {
      *      '200':
      *        description: A successful response
      */
-    app.get('/address/getAddressById/:addressId', addressController.getAddressById);
+    app.get('/address/getAddressById/:addressId',authJwt.verifyToken,authJwt.isProprietaire, addressController.getAddressById);
 
-    app.get('/address/getAddressByUserId/:userId', addressController.getAddressByUserId);
+    app.get('/address/getAddressByUserId/:userId',authJwt.verifyToken,authJwt.isProprietaire, addressController.getAddressByUserId);
 
-    app.post('/address/UseraddressAdd/', addressController.createAddressUser);
+    app.post('/address/UseraddressAdd/',authJwt.verifyToken,authJwt.isProprietaire, addressController.createAddressUser);
 
-    app.put('/address/update/:addressId', addressController.updateAddress);
+    app.put('/address/update/:addressId',authJwt.verifyToken,authJwt.isProprietaire, addressController.updateAddress);
 
-    app.get('/address/delete/:addressId', addressController.deleteAddress);
+    app.get('/address/delete/:addressId', authJwt.verifyToken,authJwt.isProprietaire,addressController.deleteAddress);
     
 };

@@ -47,7 +47,7 @@ isLocataire = (req, res, next) => {
   User.findByPk(req.userId).then(user => {
     user.getGroups().then(groups => {
       for (let i = 0; i < groups.length; i++) {
-        if (groups[i].group_name === "Locataire") {
+        if (groups[i].group_name === "locataire") {
           next();
           return;
         }
@@ -63,15 +63,40 @@ isLocataire = (req, res, next) => {
 isProprietaire = (req, res, next) => {
   User.findByPk(req.userId).then(user => {
     user.getGroups().then(groups => {
+      // console.log(groups);
       for (let i = 0; i < groups.length; i++) {
-        if (groups[i].group_name === "Proprietaire") {
+        console.log(groups[i].group_name);
+        if (groups[i].group_name === "proprietaire") {
           next();
           return;
         }
       }
 
       res.status(403).send({
-        message: "Require Locataire Role!"
+        message: "Require Proprietaire Role!"
+      });
+    });
+  });
+};
+
+isProprietaireOrAdmin = (req, res, next) => {
+  User.findByPk(req.userId).then(user => {
+    user.getGroups().then(groups => {
+      // console.log(groups);
+      for (let i = 0; i < groups.length; i++) {
+        console.log(groups[i].group_name);
+        if (groups[i].group_name === "proprietaire") {
+          next();
+          return;
+        }
+
+        else if (groups[i].group_name === "admin"){
+          next();
+          return;
+        }
+      }
+      res.status(403).send({
+        message: "Require Proprietaire Role!"
       });
     });
   });

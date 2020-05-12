@@ -12,8 +12,23 @@ var storage = multer.diskStorage({
 });
 var upload = multer({storage: storage});
 
-module.exports = function(app){
+// module.exports = function(app){
 
-    app.post('/photo/savePhotos/',upload.array("file",9),photoController.upload);
+//     app.post('/photo/savePhotos/',upload.array("file",9),photoController.upload);
     
-};
+// };
+
+module.exports = (app) => {
+
+    app.get('/photo/', photoController.getAllPhoto);
+
+    app.get('/photo/getPhotoById/:photoId', photoController.getPhotoById);
+
+    app.get('/photo/getPhotoByUserId/:userId', photoController.getPhotoByUserId);
+
+    app.get('/photo/getPhotoByAdId/:AdId', photoController.getPhotoByAdId);
+
+    app.put('/photo/updateUserPhoto/:photoId',photoController.updateUserPhoto);
+
+    app.get('/photo/delete/:photoId', photoController.deletePhoto);
+}
