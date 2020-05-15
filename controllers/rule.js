@@ -24,7 +24,7 @@ module.exports = {
                     rule_smoking : smoking,
                     rule_event : event,
                     rule_add : add,
-                    deleted : ''
+                    deleted : 0
                 })
             }
             res.status(200).send("Table Rule generer");
