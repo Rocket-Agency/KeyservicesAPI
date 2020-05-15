@@ -159,3 +159,24 @@ exports.passwordreset = (req,res) => {
     message: "Password reset !" + password  
   })
 };
+
+exports.UpdatePassword = (req,res) => {
+
+  User.findOne({
+    where: {
+      user_id: req.params.userId
+    }
+  })
+  .then(user => {
+    bcrypt.compare(req.body.passwordcurrent, user.user_password, function(err, result) {
+      User.update({
+        user_password : bcrypt.hashSync(req.body.passwordnew, 8)
+      },
+      {where: {user_id: req.params.userId}
+      })
+      res.status(200).send({
+        message: "Password update !" 
+      })
+    });
+  })
+};
