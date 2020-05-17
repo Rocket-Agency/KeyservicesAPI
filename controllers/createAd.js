@@ -1,4 +1,7 @@
 const db = require('../models');
+const fs = require('fs');
+const mkdirp = require('mkdirp')
+
 const Address = db.address;
 const Ad = db.ad;
 const Housing = db.housing;
@@ -7,6 +10,9 @@ const Equipment = db.equipment;
 const Info = db.info;
 const Rule = db.rule;
 const Price = db.price;
+const Photo = db.photo;
+
+
 addressController = require('../controllers/address');
 
 require('dotenv').config();
@@ -23,7 +29,7 @@ exports.adCreate = (req, res) =>{
         address_zip_code : req.body.address_zip_code,
         address_txt :  req.body.address_road_number+' '+req.body.address_road_type+' '
                     +req.body.address_road_name+' '+req.body.address_zip_code+' ,'+req.body.address_city,
-        deleted : ' ',
+        deleted : 0,
         address_primaire : 0,
         userUserId : req.body.userId,
     }).then(address => {
@@ -75,7 +81,7 @@ exports.adCreate = (req, res) =>{
                             housing_nb_room : req.body.housing_nb_room,
                             housing_nb_bathroom : req.body.housing_nb_bathroom,
                             housing_observation : req.body.housing_observation,
-                            housing_adress_id : address.dataValues.address_id,
+                            housing_address_id : address.dataValues.address_id,
                             housing_equipment_id : equipment.dataValues.equipment_id,
                             housing_installation_id : installation.dataValues.installation_id,
                             housing_info_id : info.dataValues.info_id,
@@ -100,6 +106,28 @@ exports.adCreate = (req, res) =>{
                                     ad_housing_id : housing.dataValues.housing_id,
                                     ad_user_id : req.body.userId,
                                     ad_housing_price_id : price.dataValues.price_id,
+                                }).then(ad =>{
+                                    var files = req.files;
+                                    var ad_Id = ad.dataValues.ad_id;
+                                    var final_link = 'uploads/'+ad_Id+'/';
+                                    const made = mkdirp.sync(final_link);
+                                    files.forEach(element =>
+                                        Photo.create({
+                                            photo_id : '',
+                                            photo_name : element.originalname,
+                                            photo_filename : element.filename,
+                                            photo_description : 'pas de description',
+                                            photo_link : final_link+element.originalname ,
+                                            photo_size : element.size,
+                                            photo_ad_id : ad.dataValues.ad_id,
+                                            deleted : 0
+                                        }).then(photo => {
+                                            fs.rename('./uploads/buffer/' + photo.photo_name, final_link + photo.photo_name, function(err) {
+                                                if (err)
+                                                    throw err;
+                                            });
+                                        })
+                                    );
                                 })
                             })
                         })

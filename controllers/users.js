@@ -87,7 +87,6 @@ module.exports = {
                 user_sexe: req.body.user_sexe,
                 user_photo: req.body.user_photo,
                 user_email: req.body.user_email,
-                user_password: bcrypt.hashSync(req.body.user_password, 8),
                 user_adresse_txt: req.body.user_adresse_txt
               },{
                 where: { user_id: userId }

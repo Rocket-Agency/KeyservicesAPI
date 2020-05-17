@@ -1,12 +1,13 @@
 priceController = require('../controllers/price');
+const { authJwt } = require("../middlewares");
 module.exports = (app) => {
-    app.get('/price/', priceController.getAllPrice);
+    app.get('/price/',authJwt.verifyToken,authJwt.isAdmin, priceController.getAllPrice);
 
     app.get('/price/generate', priceController.generatePrice);
 
-    app.get('/price/getPriceById/:priceId', priceController.getPriceById);
+    app.get('/price/getPriceById/:priceId',authJwt.verifyToken,authJwt.isProprietaire, priceController.getPriceById);
 
-    app.put('/price/update/:priceId',priceController.updatePrice);
+    app.put('/price/update/:priceId',authJwt.verifyToken,authJwt.isProprietaire,priceController.updatePrice);
 
-    app.get('/price/delete/:priceId',priceController.deletePrice);
+    app.get('/price/delete/:priceId',authJwt.verifyToken,authJwt.isProprietaire,priceController.deletePrice);
 }

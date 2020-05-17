@@ -1,7 +1,8 @@
 infoController = require('../controllers/info');
+const { authJwt } = require("../middlewares");
 module.exports = (app) => {
 
-    app.get('/info/', infoController.getAllInfo);
+    app.get('/info/', [authJwt.verifyToken], infoController.getAllInfo);
 
     app.get('/info/generate', infoController.generateInfo);
 
