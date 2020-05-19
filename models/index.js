@@ -45,6 +45,7 @@ db.rule = require("./rule")(sequelize, Sequelize);
 db.housing = require("./housing")(sequelize, Sequelize);
 db.price = require("./price")(sequelize, Sequelize);
 db.ad = require("./ad")(sequelize, Sequelize);
+db.newsletter = require("./newsletter")(sequelize, Sequelize);
 db.photo = require("./photo")(sequelize, Sequelize);
 
 
