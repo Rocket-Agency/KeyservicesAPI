@@ -10,4 +10,6 @@ module.exports = (app) => {
     app.put('/rule/update/:ruleId',authJwt.verifyToken,authJwt.isProprietaire,ruleController.updateRule);
 
     app.get('/rule/delete/:ruleId',authJwt.verifyToken,authJwt.isProprietaire,ruleController.deleteRule);
+
+    app.post('/rule/add/',ruleController.createRule);
 }
