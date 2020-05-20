@@ -15,7 +15,6 @@ module.exports = sequelize => {
     bill_location: {
       type: DataTypes.STRING(45),
       allowNull: false,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
@@ -24,25 +23,15 @@ module.exports = sequelize => {
     bill_status: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      defaultValue: null,
+    
       primaryKey: false,
       autoIncrement: false,
       comment: null,
       field: "bill_status"
     },
-    created: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: null,
-      primaryKey: false,
-      autoIncrement: false,
-      comment: null,
-      field: "created"
-    },
     bill_user_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
@@ -56,7 +45,7 @@ module.exports = sequelize => {
   const options = {
     tableName: "bill",
     comment: "",
-    indexes: [{
+    index: [{
       name: "bill_user",
       unique: false,
       type: "BTREE",
