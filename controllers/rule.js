@@ -35,6 +35,36 @@ module.exports = {
         }
     },
 
+    async createRule(req, res) {
+        try {
+
+
+                let age_2_12 = req.body.age2;
+                let age_2 = req.body.age_2;
+                let pets = req.body.pets;
+                let smoking = req.body.smoking;
+                let event = req.body.event;
+                let add = req.body.addrule ;
+
+                const ruleCollection = await Rule.create({
+                    rule_id : '',
+                    rule_age_2_12 : age_2_12 ,
+                    rule_age_2 : age_2,
+                    rule_pets : pets,
+                    rule_smoking : smoking,
+                    rule_event : event,
+                    rule_add : add,
+                    deleted : 0,
+                })
+
+            res.status(200).send("Table Rule generer");
+        }
+        catch(e) {
+            console.log(e);
+            res.status(400).send(e);
+        }
+    },
+
     async getAllRule(req,res){
         try{
 
