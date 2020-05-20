@@ -80,4 +80,6 @@ module.exports = function(app) {
   app.post("/api/auth/signin", controller.signin);
 
   app.post("/api/auth/resetpassword", controller.passwordreset);
+
+  app.put("/api/user/update/password/:userId", controller.UpdatePassword);
 };
