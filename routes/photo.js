@@ -28,7 +28,7 @@ module.exports = (app) => {
 
     app.get('/photo/getPhotoByAdId/:AdId', photoController.getPhotoByAdId);
 
-    app.put('/photo/updateUserPhoto/:photoId',photoController.updateUserPhoto);
+    app.put('/photo/updateUserPhoto/:userId',upload.array("file",1),photoController.updateUserPhoto);
 
     app.get('/photo/delete/:photoId', photoController.deletePhoto);
 }
