@@ -33,6 +33,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(cors());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+//declaration de l'emplacement des user picture
+app.use('/userPicture',express.static(__dirname + '/uploads/UserPicture/'));
+
 
 // express-winston logger makes sense BEFORE the router
 app.use(expressWinston.logger({

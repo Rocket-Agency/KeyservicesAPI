@@ -3,6 +3,7 @@ const Photo = db['photo'];
 const User = db['user'];
 const fs = require('fs');
 const mkdirp = require('mkdirp')
+const url = require('url');
 
 
 require('dotenv').config();
@@ -104,24 +105,45 @@ module.exports = {
 
     async updateUserPhoto(req,res){//a modifier
         try {
-            var photoId = req.params.photoId;
-            var photoUpdate = req.body;
-            let photoUpdateValues= new Object();
-            for(value in photoUpdate){
-                if(photoUpdate[value] !== ''){
-                    photoUpdateValues[value] = photoUpdate[value];
+            var files = req.files[0];
+            var user_Id = req.params.userId;
+            var final_link = 'uploads/UserPicture/'+user_Id+'/';
+            const made = mkdirp.sync(final_link);
+
+            const photoCollection = await User.findOne(
+                {
+                    where     : {user_id: req.params.userId}
                 }
+            );
+
+            const new_file_name = files['originalname'];
+            const old_file = photoCollection['user_photo'];
+
+            const updatePhotoCollection = await User.update(
+                {
+                    user_photo   : new_file_name
+                },
+                {
+                    where     : {user_id: user_Id}
+                }
+            );
+            
+            if(old_file != "test.png"){
+                fs.unlink(final_link + old_file, function (err) {
+                    if (err) throw err;
+                
+                    console.log('Ancienne photo supprimer !');
+                }); 
             }
 
-            console.log(photoUpdateValues);
+            fs.rename('./uploads/buffer/' + new_file_name, final_link + new_file_name, function(err) {
+                if (err) throw err;
 
-            const photoCollection = await Photo.update(
-                photoUpdateValues,
-                {
-                where     : {photo_id: photoId}
+                console.log('Nouvelle photo enregistrer !');
             });
+
             res.setHeader('Content-Type', 'application/json');
-            res.status(200).send('mise a jours réusis');
+            res.status(200).send("Photo modifier");
         }
         catch(e){
             console.log(e);
@@ -129,6 +151,26 @@ module.exports = {
             res.status(400).send(e);
         }
     },
+
+    async deleteUserPhoto(req,res){ //a modifier verifier si unne ou plusieur photo sont supprimer faire fonction differente pour les user photo et annonce photo
+        try{
+            const delCollection = await Photo.update({
+                user_photo   : 'test.jpg'
+                },
+                {
+                where     : {user_id: req.params.userId}
+            });
+
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).send("Photo supprimer");
+        }
+        catch(e){
+            console.log(e);
+
+            res.status(400).send(e);
+        }
+    },
+    
 
     async deletePhoto(req,res){ //a modifier verifier si unne ou plusieur photo sont supprimer faire fonction differente pour les user photo et annonce photo
         try{
@@ -140,7 +182,7 @@ module.exports = {
             });
 
             res.setHeader('Content-Type', 'application/json');
-            res.status(200).send("l'annonce "+ req.params.photoId +" à était suprimer");
+            res.status(200).send("phot de l'annonce "+ req.params.photoId +" à était suprimer");
         }
         catch(e){
             console.log(e);
@@ -151,17 +193,24 @@ module.exports = {
 
     async getPhotoByUserId(req,res){
         try{
-            const photoCollection = await User.findFirst({
-                attributes: ['user_photo']
-                },
-                {
-                where     : {user_id: req.params.user_id}
-            });
+            urld =req.protocol+'://'+req.get('host');
+            var user_id = req.params.userId;
 
+            const photoCollection = await User.findOne(
+                {
+                where     : {user_id: user_id}
+            });
             
+            file_name = photoCollection['user_photo'];
+
+            if(file_name == 'test.png')
+                photo_url = urld+'/userPicture/'+file_name;
+
+            else
+                photo_url = urld+'/userPicture/'+user_id+'/'+file_name;
 
             res.setHeader('Content-Type', 'application/json');
-            res.status(200).send(photoCollection);
+            res.status(200).send({photo_url : photo_url});
         }
         catch(e){
             console.log(e);
@@ -169,10 +218,11 @@ module.exports = {
             res.status(400).send(e);
         }
     },
+    
 
     async getPhotoByAdId(req,res){
         try{
-            const photoCollection = await User.findFirst({
+            const photoCollection = await User.findOne({
                 attributes: ['user_photo']
                 },
                 {
