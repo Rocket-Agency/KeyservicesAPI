@@ -99,6 +99,7 @@ require('./routes/ad')(app);
 require('./routes/createAd')(app);
 require('./routes/photo')(app);
 require('./routes/newsletter')(app);
+require('./routes/services')(app);
 // express-winston errorLogger makes sense AFTER the router.
 app.use(expressWinston.errorLogger({
   transports: [

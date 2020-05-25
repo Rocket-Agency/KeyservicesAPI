@@ -87,6 +87,24 @@ module.exports = {
 
     },
 
+    async getLastAdByUserId(req,res) {
+        try {
+
+            const adCollection = await Ad.findOne({
+                where     : {ad_user_id: req.params.userId},
+                order     : [['ad_id', 'DESC']]
+            });
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).send( {ad_id : adCollection['ad_id']} );
+        }
+        catch(e){
+            console.log(e);
+
+            res.status(400).send(e);
+        }
+
+    },
+
     async getAdByUserId(req,res) {
         try {
 

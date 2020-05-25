@@ -8,34 +8,66 @@ module.exports = sequelize => {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
-      autoIncrement: false,
+      autoIncrement: true,
       comment: null,
       field: "service_id"
     },
      service_category: {   //produit a la carte ou pack sérenité
-      type: DataTypes.STRING(45),
+      type: DataTypes.STRING(11),
       allowNull: false,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
       field: "service_category"
     },
-     service_type: {   //name si produit a la carte{
+     service_mise_en_ligne: {   
       type: DataTypes.STRING(11),
       allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "service_price"
+      field: "service_mise_en_ligne"
     },
-     service_price: {
+     service_remise_cle: {
+      type: DataTypes.STRING(11),
+      allowNull: true,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "service_remise_cle"
+    },
+    service_checkin_checkout: {
+      type: DataTypes.STRING(11),
+      allowNull: true,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "service_checkin_checkout"
+    },
+    service_frigo: {
+      type: DataTypes.STRING(11),
+      allowNull: true,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "service_frigo"
+    },
+    service_menage: {
+      type: DataTypes.STRING(11),
+      allowNull: true,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "service_menage"
+    },
+    service_prix_total: {
       type: DataTypes.STRING(11),
       allowNull: false,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "service_price"
+      field: "service_prix_total"
     },
      service_deleted: {
       type: DataTypes.INTEGER(11),
@@ -55,15 +87,15 @@ module.exports = sequelize => {
       field: "service_ad_id",
       references: {
         key: "ad_id",
-        model: "ad_model"
+        model: "ad"
       }
     }
   };
   const options = {
     tableName: "service",
     comment: "",
-    indexes: [{
-      name: "service_ad_id",
+    index: [{
+      name: "serviceAdId",
       unique: false,
       type: "BTREE",
       fields: ["service_ad_id"]

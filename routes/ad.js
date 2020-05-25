@@ -9,6 +9,8 @@ module.exports = (app) => {
 
     app.get('/ad/getAdById/:adId',authJwt.verifyToken,authJwt.isProprietaire,adController.getAdById);
 
+    app.get('/ad/getLastAdByUserId/:userId',adController.getLastAdByUserId);
+
     app.get('/ad/delete/:adId',authJwt.verifyToken,authJwt.isProprietaire ,adController.deleteAd);
 
     app.put('/ad/update/:adId',authJwt.verifyToken,authJwt.isProprietaire,adController.updateAd);
