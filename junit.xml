@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="5" failures="0" time="6.122">
+  <testsuite name="Test add data to api" errors="0" failures="0" skipped="0" timestamp="2020-05-27T07:14:05" time="6.005" tests="5">
+    <testcase classname="Test add data to api should create a new user with role proprietaire" name="Test add data to api should create a new user with role proprietaire" time="0.137">
+    </testcase>
+    <testcase classname="Test add data to api Login a user" name="Test add data to api Login a user" time="0.05">
+    </testcase>
+    <testcase classname="Test add data to api Update password" name="Test add data to api Update password" time="0.01">
+    </testcase>
+    <testcase classname="Test add data to api Reset password" name="Test add data to api Reset password" time="0.05">
+    </testcase>
+    <testcase classname="Test add data to api Contact message" name="Test add data to api Contact message" time="0.018">
+    </testcase>
+  </testsuite>
+</testsuites>

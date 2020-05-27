@@ -7,10 +7,11 @@
     "testEnvironment": "node",
     "coveragePathIgnorePatterns": [
       "/node_modules/"
-    ]
+    ],
+    "reporters": [ "default", "jest-junit" ]
   },
   "scripts": {
-    "test": "jest --testTimeout=10000",
+    "test": "jest --ci --reporters=default --reporters=jest-junit --detectOpenHandles --testTimeout=10000",
     "start": "nodemon server.js"
   },
   "keywords": [],
@@ -32,10 +33,11 @@
     "faker": "^4.1.0",
     "generate-password": "^1.5.1",
     "jest": "^25.4.0",
+    "jest-junit": "^10.0.0",
     "jsonwebtoken": "^8.5.1",
     "mariadb": "^2.3.1",
     "mkdirp": "^1.0.4",
-    "mocha": "^7.1.1",
+    "mocha": "^7.2.0",
     "mongoose": "^5.9.6",
     "multer": "^1.4.2",
     "mysql": "^2.18.1",
