@@ -64,13 +64,13 @@ describe('Test add data to api', () => {
 describe('Test add data to api', () => {
   it('Contact message', async () => {
     const res = await request(app)
-      .post('/api/contact/creat')
+      .post('/api/contact/create')
       .send({
         first_name : 'Djamel',
         last_name : 'Bougouffa',
         email : 'dbougouffa@gmail.com',
         object : 'Information sur Keyservices',
-        message : "J'aimerais avoir des informations concernant la non publication de mon annonce...z",
+        message : "J'aimerais avoir des informations concernant la non publication de mon annonce",
       })
     expect(res.statusCode)
     expect(res.body)
