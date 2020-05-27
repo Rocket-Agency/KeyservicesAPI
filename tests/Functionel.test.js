@@ -21,9 +21,6 @@ describe('Test add data to api', () => {
     expect(res.statusCode)
     expect(res.body)
   })
-})
-
-describe('Test add data to api', () => {
   it('Login a user', async () => {
     const res = await request(app)
       .post('/api/auth/signin')
@@ -34,9 +31,6 @@ describe('Test add data to api', () => {
     expect(res.statusCode)
     expect(res.body)
   })
-})
-
-describe('Test add data to api', () => {
   it('Update password', async () => {
     const res = await request(app)
       .put('/api/user/update/password/')
@@ -47,9 +41,6 @@ describe('Test add data to api', () => {
     expect(res.statusCode)
     expect(res.body)
   })
-})
-
-describe('Test add data to api', () => {
   it('Reset password', async () => {
     const res = await request(app)
       .post('/api/auth/resetpassword')
@@ -59,9 +50,6 @@ describe('Test add data to api', () => {
     expect(res.statusCode)
     expect(res.body)
   })
-})
-
-describe('Test add data to api', () => {
   it('Contact message', async () => {
     const res = await request(app)
       .post('/api/contact/create')

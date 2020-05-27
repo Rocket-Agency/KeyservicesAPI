@@ -63,9 +63,7 @@ isLocataire = (req, res, next) => {
 isProprietaire = (req, res, next) => {
   User.findByPk(req.userId).then(user => {
     user.getGroups().then(groups => {
-      // console.log(groups);
       for (let i = 0; i < groups.length; i++) {
-        console.log(groups[i].group_name);
         if (groups[i].group_name === "proprietaire") {
           next();
           return;
