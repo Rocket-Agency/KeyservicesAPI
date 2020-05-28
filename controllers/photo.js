@@ -203,7 +203,7 @@ module.exports = {
             
             file_name = photoCollection['user_photo'];
 
-            if(file_name == 'test.png')
+            if(file_name == 'test.png' || file_name == 'admin.png' || file_name == 'concierge.png' )
                 photo_url = urld+'/userPicture/'+file_name;
 
             else
