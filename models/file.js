@@ -53,7 +53,7 @@ const {
         field: "file_user_id",
         references: {
           key: "user_id",
-          model: "users_model"
+          model: "users"
         }
       },
       file_ad_id: {
@@ -65,9 +65,17 @@ const {
         field: "file_ad_id",
         references: {
           key: "ad_id",
-          model: "ad_model"
+          model: "ad"
         }
-      }
+      },
+      deleted: {
+        type: DataTypes.STRING(45),
+        allowNull: true,
+        defaultValue: null,
+        primaryKey: false,
+        comment: null,
+        field: "deleted"
+      },
     };
     const options = {
       tableName: "file",

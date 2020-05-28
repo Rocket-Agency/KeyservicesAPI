@@ -166,6 +166,7 @@ require('./routes/newsletter')(app);
 require('./routes/services')(app);
 require('./routes/payment')(app);
 require('./routes/appointment')(app);
+require('./routes/file')(app);
 // express-winston errorLogger makes sense AFTER the router.
 app.use(expressWinston.errorLogger({
   transports: [
