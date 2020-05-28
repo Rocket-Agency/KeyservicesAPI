@@ -8,7 +8,10 @@
     "coveragePathIgnorePatterns": [
       "/node_modules/"
     ],
-    "reporters": [ "default", "jest-junit" ]
+    "reporters": [
+      "default",
+      "jest-junit"
+    ]
   },
   "scripts": {
     "test": "jest --ci --reporters=default --reporters=jest-junit --detectOpenHandles --testTimeout=10000",
@@ -52,6 +55,7 @@
     "sequelize-automate": "^1.2.0",
     "should": "^13.2.3",
     "sinon": "^9.0.2",
+    "stripe": "^8.55.0",
     "supertest": "^4.0.2",
     "swagger-jsdoc": "^3.7.0",
     "swagger-ui": "^3.25.0",

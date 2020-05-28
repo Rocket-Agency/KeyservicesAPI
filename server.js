@@ -49,12 +49,12 @@ app.use(expressWinston.logger({
 }));
 
 const db = require("./models");
-/*db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0', { raw: true }).then ( function () {
+db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0', { raw: true }).then ( function () {
      db.sequelize.sync ({ force: true }).then ( function () {
          console.log("Drop and re-sync db.");
          initial();
      });
- });*/
+ });
 const Group = db.group;
 function initial() {
     Group.create({
@@ -100,6 +100,7 @@ require('./routes/createAd')(app);
 require('./routes/photo')(app);
 require('./routes/newsletter')(app);
 require('./routes/services')(app);
+require('./routes/payment')(app);
 // express-winston errorLogger makes sense AFTER the router.
 app.use(expressWinston.errorLogger({
   transports: [
