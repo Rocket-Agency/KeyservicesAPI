@@ -49,13 +49,14 @@ app.use(expressWinston.logger({
 }));
 
 const db = require("./models");
-db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0', { raw: true }).then ( function () {
-     db.sequelize.sync ({ force: true }).then ( function () {
-         console.log("Drop and re-sync db.");
-         initial();
-     });
- });
+// db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0', { raw: true }).then ( function () {
+//      db.sequelize.sync ({ force: true }).then ( function () {
+//          console.log("Drop and re-sync db.");
+//          initial();
+//      });
+//  });
 const Group = db.group;
+const User = db.user;
 function initial() {
     Group.create({
       group_id: 1,
@@ -82,7 +83,70 @@ function initial() {
       group_name: "user"
     });
 
+    User.create({
+      user_id: 1,
+      user_last_name: "admin",
+      user_first_name: "admin",
+      user_date_of_birth : "2020-05-13 00:00:00",
+      user_sexe: 'ADMIN',
+      user_photo: 'admin.png',
+      user_email: 'admin@admin.fr',
+      user_password: '$2a$08$hhyhOJleUXH.vsNzStb0OuZkqJFg44.8GhNxcA5aBBsOCgYZeIrNy',
+      user_adresse_txt: "123 rue soleil",
+      deleted: 0,
+    }).then(user => {
+      user.setGroups(1);
+    });
+
+    User.create({
+      user_id: 2,
+      user_last_name: "proprietaire",
+      user_first_name: "proprietaire",
+      user_date_of_birth : "2020-05-13 00:00:00",
+      user_sexe: 'proprietaire',
+      user_photo: 'test.png',
+      user_email: 'proprietaire@proprietaire.fr',
+      user_password: '$2a$08$hhyhOJleUXH.vsNzStb0OuZkqJFg44.8GhNxcA5aBBsOCgYZeIrNy',
+      user_adresse_txt: "123 rue soleil",
+      deleted: 0,
+    }).then(user => {
+      user.setGroups(2);
+    });
+
+    User.create({
+      user_id: 3,
+      user_last_name: "locataire",
+      user_first_name: "locataire",
+      user_date_of_birth : "2020-05-13 00:00:00",
+      user_sexe: 'locataire',
+      user_photo: 'test.png',
+      user_email: 'locataire@locataire.fr',
+      user_password: '$2a$08$hhyhOJleUXH.vsNzStb0OuZkqJFg44.8GhNxcA5aBBsOCgYZeIrNy',
+      user_adresse_txt: "123 rue soleil",
+      deleted: 0,
+    }).then(user => {
+      user.setGroups(3);
+    });
+
+    User.create({
+      user_id: 4,
+      user_last_name: "concierge",
+      user_first_name: "concierge",
+      user_date_of_birth : "2020-05-13 00:00:00",
+      user_sexe: 'concierge',
+      user_photo: 'concierge.png',
+      user_email: 'concierge@concierge.fr',
+      user_password: '$2a$08$hhyhOJleUXH.vsNzStb0OuZkqJFg44.8GhNxcA5aBBsOCgYZeIrNy',
+      user_adresse_txt: "123 rue soleil",
+      deleted: 0,
+    }).then(user => {
+      user.setGroups(4);
+    });
+   
+
 }
+
+
 
 require('./routes/user')(app);
 require('./routes/contact')(app);
@@ -100,6 +164,7 @@ require('./routes/createAd')(app);
 require('./routes/photo')(app);
 require('./routes/newsletter')(app);
 require('./routes/services')(app);
+require('./routes/appointment')(app);
 // express-winston errorLogger makes sense AFTER the router.
 app.use(expressWinston.errorLogger({
   transports: [

@@ -1,5 +1,36 @@
 const db = require('../models');
+var toInteger = require('to-integer');
 const Ad = db.ad;
+const Address = db.address;
+const Housing = db.housing;
+const { QueryTypes } = require('sequelize');
+const HOST = process.env.HOST;
+const DB = process.env.DB;
+const USER = process.env.USER;
+const PASSWORD = process.env.PASSWORD;
+const DIALECT = process.env.DIALECT;
+const POOLMAX = process.env.POOLMAX;
+const POOLMIN = process.env.POOLMIN;
+const POOLACQUIRE = process.env.POOLACQUIRE;
+const POOLIDLE = process.env.POOLIDLE;
+
+const Sequelize = require("sequelize");
+const sequelize = new Sequelize(DB, USER, PASSWORD, {
+  host: HOST,
+  dialect: DIALECT,
+  dialectOptions: {
+    timezone: 'Europe/Paris',
+  },
+  timestamps: false,
+  /*operatorsAliases: false,*/
+
+  pool: {
+    max: toInteger(POOLMAX),
+    min: toInteger(POOLMIN),
+    acquire: toInteger(POOLACQUIRE),
+    idle: toInteger(POOLIDLE)
+  }
+});
 addressController = require('../controllers/address');
 
 const faker = require('faker');
@@ -108,9 +139,14 @@ module.exports = {
     async getAdByUserId(req,res) {
         try {
 
-            const adCollection = await Ad.findAll({
-                where     : {ad_user_id: req.params.userId}
-            });
+            const adCollection = await sequelize.query(
+                'SELECT ad.* , address.address_txt FROM ad INNER JOIN housing ON ad.ad_housing_id = housing.housing_id INNER JOIN address on housing.housing_address_id = address.address_id WHERE ad_user_id = ?',
+                {
+                    replacements:[req.params.userId],
+                    type: QueryTypes.SELECT
+                }
+            );
+
             res.setHeader('Content-Type', 'application/json');
             res.status(200).send(adCollection);
         }

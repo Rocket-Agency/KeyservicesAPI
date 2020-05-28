@@ -53,6 +53,7 @@ db.photo = require("./photo")(sequelize, Sequelize);
 db.file = require("./file")(sequelize, Sequelize);
 db.bill = require("./bill")(sequelize, Sequelize);
 db.services = require("./services")(sequelize, Sequelize);
+db.appointment = require("./appointment")(sequelize, Sequelize);
 
 
 db.group.belongsToMany(db.user, {
@@ -65,7 +66,6 @@ db.user.belongsToMany(db.group, {
   foreignKey: "user_id",
   otherKey: "group_id"
 });
-
 
 // une addresse appartient a un et un seul user && un user peut avoir plusieur address
 db.address.belongsTo(db.user);
