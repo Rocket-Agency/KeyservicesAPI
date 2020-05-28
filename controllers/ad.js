@@ -88,11 +88,19 @@ module.exports = {
     async getAllAd(req,res){
         try{
 
-            const AdCollection = await Ad.findAll({
-                where: {deleted : null}
-            });
+            // const AdCollection = await Ad.findAll({
+            //     where: {deleted : null}
+            // });
+
+            const adCollection = await sequelize.query(
+                'SELECT ad.* , address.address_txt , users.user_last_name, users.user_first_name FROM ad INNER JOIN users ON ad.ad_user_id = users.user_id INNER JOIN housing ON ad.ad_housing_id = housing.housing_id INNER JOIN address on housing.housing_address_id = address.address_id WHERE users.deleted = ?',
+                {
+                    replacements:[0],
+                    type: QueryTypes.SELECT
+                }
+            );
             res.setHeader('Content-Type', 'application/json');
-            res.status(200).send(AdCollection);
+            res.status(200).send(adCollection);
         }
         catch(e){
             console.log(e);
