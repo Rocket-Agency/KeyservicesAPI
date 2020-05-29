@@ -40,7 +40,7 @@ module.exports = (app) => {
 
     // app.get('/services/getServicesByUserId/:userId',authJwt.verifyToken,authJwt.isProprietaire, servicesController.getServicesByUserId);
 
-    app.post('/services/UserservicesAdd/',servicesController.createServicesUser);
+    app.post('/services/UserservicesAdd/',authJwt.verifyToken,servicesController.createServicesUser);
 
     // app.put('/services/update/:servicesId',authJwt.verifyToken,authJwt.isProprietaire, servicesController.updateServices);
 
